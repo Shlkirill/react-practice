@@ -1,28 +1,26 @@
 import React from 'react'
 import styles from './ToDoList.module.css'
 import Task from './task/Task'
+import { Field } from 'redux-form'
 
-let taskList = ['Сходить в тулает', 'Покушать', 'ffewefw'];
+const renderField = ({ input, label, type }) => (
+    <input {...input} type={type} className={styles.inputForm} />
+);
 
 
-
-let result = taskList.map((item) => {
-    return <Task text={item}/>
-})
-
-let onAddTask = () => {
-    taskList.push('fwefwefw')
-}
-
-const ToDoList = () => {
+const ToDoList = (props) => {
+    let result = props.taskList.map((item) => {
+        return <Task text={item.text} done={item.done} stageOfDone={props.stageOfDone} id={item.id} deleteTask={props.deleteTask}/>
+    })
     return (
         <div className={styles.container}>
             <div className={styles.todolist}>
+                <form onSubmit={props.handleSubmit} className={styles.formControl}>
+                    <Field className={styles.input} name='newTask'
+                        component={renderField} type="text" />
+                    <button className={styles.addTask}> Add task</button>
+                </form>
                 {result}
-                <div>
-                    <input type="text" name="" id="" className={styles.input} />
-                    <button className={styles.addTask} onClick={onAddTask}> Add task</button>
-                </div>
             </div>
         </div>
     )

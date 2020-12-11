@@ -1,0 +1,35 @@
+.containerTask {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  align-items: center;
+}
+.taskDone {
+  color: rgb(24, 119, 0);
+}
+.taskText {
+  width: 100%;
+  border-bottom: 3px dashed rgba(0, 0, 0, 0.507);
+  margin: 10px 5px;
+  padding: 0 10px;
+  font-weight: 600;
+  font-style: italic
+}
+
+
+.checked, .unChecked {
+  border: 3px solid rgb(0, 0, 0);
+  padding: 2px;
+}
+.unChecked {
+  color: white;
+}
+
+.checked:hover, .unChecked:hover, .times:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.times {
+  color: red;
+  font-size: 20px;
+}  

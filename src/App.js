@@ -1,18 +1,16 @@
-import ToDoList from './components/toDoList/ToDoList';
+import React from 'react'
 import Header from './components/Header/Header';
+import ToDoListContainer from './components/toDoList/ToDiListContainer';
 
 class App extends React.Component {
-  
-  componentDidMount() {
 
-  };
   render() {
-    <div className="App">
-      <div className="wrapper">
-        <Header />
-        <ToDoList />
+    return (
+      <div className="App">
+          <Header />
+          <ToDoListContainer />
       </div>
-    </div>
+    )
   };
 }
 
