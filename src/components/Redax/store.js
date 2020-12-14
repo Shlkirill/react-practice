@@ -10,10 +10,16 @@ export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
 let initialState = {
-    taskList: [
-        { id: 1, text: 'Купить хлеба', done: false },
-        { id: 2, text: 'Сделать бутерброт', done: true }
-    ]
+    taskList: {
+        unCompletedTasks: [
+            { id: 5, text: 'Купить хлеба', done: false },
+            { id: 7, text: 'Сделать бутерброт', done: false },
+        ],
+        completedTasks:: [
+            { id: 64, text: 'Сходить в кино', done: true },
+            { id: 14, text: 'Закончить реферат', done: true },
+        ]
+    }
 }
 
 const appReducer = (state = initialState, action) => {

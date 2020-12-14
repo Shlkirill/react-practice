@@ -15,7 +15,7 @@ const Task = (props) => {
     const unChecked = <FontAwesomeIcon icon={faCheck} className={styles.unChecked} onClick={onStageOfDone} />
 
     return (
-        <div className={styles.containerTask}>
+        <div className={`${styles.containerTask} + ${ props.done ? styles.taskDoneAll : ''}`}>
             <div className={styles.taskDone}>
                 {props.done ? checked : unChecked}
             </div>
