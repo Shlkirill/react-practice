@@ -12,12 +12,12 @@ export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 let initialState = {
     taskList: {
         unCompletedTasks: [
-            { id: 5, text: 'Купить хлеба', done: false },
-            { id: 7, text: 'Сделать бутерброт', done: false },
+            { id: 1, text: 'Купить хлеба', done: false },
+            { id: 2, text: 'Сделать бутерброт', done: false },
         ],
-        completedTasks:: [
-            { id: 64, text: 'Сходить в кино', done: true },
-            { id: 14, text: 'Закончить реферат', done: true },
+        completedTasks: [
+            { id: 3, text: 'Сходить в кино', done: true },
+            { id: 4, text: 'Закончить реферат', done: true },
         ]
     }
 }
@@ -29,11 +29,11 @@ const appReducer = (state = initialState, action) => {
         case ADD_NEW_TASK:
             stateCopy = {
                 ...state,
-                taskList: [...state.taskList]
+                taskList: {...state.taskList}
             }
-            let idTask = stateCopy.taskList.length + 1;
-            stateCopy.taskList.push({ id: idTask, text: action.task, done: false });
-            console.log(stateCopy.taskList)
+            let idTask = stateCopy.taskList.unCompletedTasks.length + 1;
+            stateCopy.taskList.unCompletedTasks.push({ id: idTask, text: action.task, done: false });
+            console.log(stateCopy)
             return stateCopy;
         case STAGE_OF_DONE:
             let arr = state.taskList.map((item) => {
@@ -44,7 +44,7 @@ const appReducer = (state = initialState, action) => {
             })
             stateCopy = {
                 ...state,
-                taskList: [...arr]
+                taskList: {...state.taskList}
             }
             return stateCopy;
         case DELETE_TASK:

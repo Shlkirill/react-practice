@@ -9,7 +9,10 @@ const renderField = ({ input, label, type }) => (
 
 
 const ToDoList = (props) => {
-    let result = props.taskList.map((item) => {
+    let unCompletedTasks = props.taskList.unCompletedTasks.map((item) => {
+        return <Task text={item.text} done={item.done} stageOfDone={props.stageOfDone} id={item.id} deleteTask={props.deleteTask} />
+    })
+    let completedTasks = props.taskList.completedTasks.map((item) => {
         return <Task text={item.text} done={item.done} stageOfDone={props.stageOfDone} id={item.id} deleteTask={props.deleteTask} />
     })
     return (
@@ -22,7 +25,8 @@ const ToDoList = (props) => {
                             component={renderField} type="text" />
                         <button className={styles.addTask}>Добавить</button>
                     </form>
-                    {result}
+                    {unCompletedTasks}
+                    {completedTasks}
                 </div>
             </div>
         </div>
