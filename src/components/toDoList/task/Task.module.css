@@ -3,9 +3,14 @@
   justify-content: space-between;
   margin: 0 10px;
   align-items: center;
+  border-radius: 10px;
+  padding: 0 10px;
 }
 .taskDone {
-  color: rgb(24, 119, 0);
+  color: rgb(18, 88, 0);
+}
+.taskDoneAll {
+  background-color: rgba(0, 255, 115, 0.507);
 }
 .taskText {
   width: 100%;
@@ -15,8 +20,6 @@
   font-weight: 600;
   font-style: italic
 }
-
-
 .checked, .unChecked {
   border: 3px solid rgb(0, 0, 0);
   padding: 2px;
