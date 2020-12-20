@@ -56,3 +56,30 @@
    border: none;
    border-bottom: 1px solid;
  }
+ .filter {
+   display: flex;
+   justify-content: space-around;
+ }
+ .filter_active {
+   border-bottom: 2px solid #000;
+   font-weight: 600;
+ }
+ .filter p:hover {
+   cursor: pointer;
+   border-bottom: 2px solid #000;
+ }
+ .info {
+   display: flex;
+   justify-content: space-around;
+ }
+ .info_undone, .info_done {
+   font-weight: 600;
+ }
+ .info_undone span {
+   font-size: 20px;
+   color: rgb(250, 90, 61);
+ }
+ .info_done span {
+  font-size: 20px;
+  color: #3da35a;
+}

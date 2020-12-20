@@ -12,8 +12,9 @@ export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 let initialState = {
     taskList:  [
             { id: 1, text: 'Купить хлеба', done: false },
+            { id: 41, text: 'Попить чая', done: true },
             { id: 2, text: 'Сделать бутерброт', done: false },
-            { id: 3, text: 'Сделать бутерброт', done: true },
+            { id: 3, text: 'Помыть голову', done: true },
         ],
 }
 
@@ -26,12 +27,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 taskList: [...state.taskList]
             }
-            let idTask = stateCopy.taskListlength + 1;
-            stateCopy.taskList.push({ id: idTask, text: action.task, done: false });
-            console.log(stateCopy)
+            let idTask = stateCopy.taskList.length + 1;
+            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false });
             return stateCopy;
         case STAGE_OF_DONE:
-            state.taskList.map((item) => {
+            let arr = state.taskList.map((item) => {
                 if (item.id == action.idTask) {
                     item.done = !item.done
                 }
@@ -39,7 +39,7 @@ const appReducer = (state = initialState, action) => {
             })
             stateCopy = {
                 ...state,
-                taskList: [...state.taskList]
+                taskList: [...arr]
             }
             return stateCopy;
         case DELETE_TASK:
