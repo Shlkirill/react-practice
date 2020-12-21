@@ -83,3 +83,21 @@
   font-size: 20px;
   color: #3da35a;
 }
+.myAppear {
+  width: 150px;
+  height: 150px;
+  border: 2px dotted red;
+  border-radius: 50%;
+}
+.myEnterActive {
+  opacity: 1;
+  transition: opacity 500ms
+}
+.myExit {
+  opacity: 0;
+  transition: opacity 500ms
+}
+.myExitActive {
+  opacity: 1;
+  transition: opacity 500ms
+}

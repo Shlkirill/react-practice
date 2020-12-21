@@ -9,13 +9,10 @@ export const addTaskAC = (task) => ({ type: ADD_NEW_TASK, task });
 export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
+let localBaseTask = JSON.parse(localStorage.getItem('taskList'))
+
 let initialState = {
-    taskList:  [
-            { id: 1, text: 'Купить хлеба', done: false },
-            { id: 41, text: 'Попить чая', done: true },
-            { id: 2, text: 'Сделать бутерброт', done: false },
-            { id: 3, text: 'Помыть голову', done: true },
-        ],
+    taskList: [...localBaseTask]
 }
 
 const appReducer = (state = initialState, action) => {
@@ -29,6 +26,9 @@ const appReducer = (state = initialState, action) => {
             }
             let idTask = stateCopy.taskList.length + 1;
             stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false });
+
+            localStorage.setItem('taskList', JSON.stringify(stateCopy.taskList))
+
             return stateCopy;
         case STAGE_OF_DONE:
             let arr = state.taskList.map((item) => {
@@ -41,6 +41,7 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 taskList: [...arr]
             }
+            localStorage.setItem('taskList', JSON.stringify(arr))
             return stateCopy;
         case DELETE_TASK:
             let arrfilter = state.taskList.filter((item) => {
@@ -50,6 +51,9 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 taskList: [...arrfilter]
             }
+
+            localStorage.setItem('taskList', JSON.stringify(arrfilter))
+
             return stateCopy;
         default:
             return state;
