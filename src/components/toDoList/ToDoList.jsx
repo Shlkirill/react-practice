@@ -9,22 +9,34 @@ const renderField = ({ input, label, type }) => (
 );
 
 const ToDoList = (props) => {
-    const [filterMode, setEditMode] = useState(1);
+    const [filterMode, setFilterMode] = useState(1);
     const [inProp, setInProp] = useState(true);
+    const [editMode, setEditMode] = useState(false);
 
     let changeFilter = (filterNumber) => {
-        setEditMode(filterNumber);
+        setFilterMode(filterNumber);
         setInProp(!inProp);
+    }
+    let onEditMode = (idTask) => {
+        setEditMode(true);
+        props.editTask(idTask)
+    }
+    let offEditMode = () => {
+        setEditMode(false)
     }
 
     let undoneTask = props.taskList.filter(item => !item.done)
     let doneTask = props.taskList.filter(item => item.done)
     let allTask = undoneTask.concat(doneTask)
     let resultAllTask = allTask.map((item) => {
-        return <Task text={item.text} done={item.done} stageOfDone={props.stageOfDone} id={item.id} deleteTask={props.deleteTask} />
+        return <Task text={item.text} done={item.done}
+            stageOfDone={props.stageOfDone} id={item.id}
+            deleteTask={props.deleteTask} editTask={props.editTask}
+            onEditMode={onEditMode} />
     })
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);
+    console.log(editMode ? styles.editWindow_wrapper + ' ' + styles.editWindow_hide : styles.editWindow_wrapper)
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -61,6 +73,12 @@ const ToDoList = (props) => {
                             </div>
                         </CSSTransition>
                     </TransitionGroup >
+                </div>
+            </div>
+            <div className={editMode ? styles.editWindow_wrapper : `${styles.editWindow_wrapper} ${styles.editWindow_hide}`}>
+                <div className={styles.editWindow}>
+                    <input type="text" />
+                    <button onClick={offEditMode}>Ред.</button>
                 </div>
             </div>
         </div >

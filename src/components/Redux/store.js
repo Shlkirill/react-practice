@@ -3,10 +3,12 @@ import { reducer as formReducer } from 'redux-form';
 
 const ADD_NEW_TASK = 'ADD_NEW_TASK';
 const STAGE_OF_DONE = 'STAGE_OF_DONE';
+const EDIT_TASK = 'EDIT_TASK';
 const DELETE_TASK = 'DELETE_TASK';
 
 export const addTaskAC = (task) => ({ type: ADD_NEW_TASK, task });
 export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
+export const editTaskAC = (idTask) => ({ type: EDIT_TASK, idTask})
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
 let localBaseTask = JSON.parse(localStorage.getItem('taskList'))
@@ -43,6 +45,12 @@ const appReducer = (state = initialState, action) => {
             }
             localStorage.setItem('taskList', JSON.stringify(arr))
             return stateCopy;
+        case EDIT_TASK:
+            stateCopy = {
+                ...state
+            }
+                alert(action.idTask)
+            return stateCopy;   
         case DELETE_TASK:
             let arrfilter = state.taskList.filter((item) => {
                 return (item.id !== action.idTask) ? true : false
@@ -59,7 +67,6 @@ const appReducer = (state = initialState, action) => {
             return state;
     }
 }
-
 
 let rootReducer = combineReducers({
     app: appReducer,

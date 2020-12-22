@@ -1,7 +1,7 @@
 import React from 'react'
 import ToDoList from './ToDoList'
 import { connect } from 'react-redux'
-import { addTaskAC, stageOfDoneAC, deleteTaskAC } from '../Redux/store'
+import { addTaskAC, stageOfDoneAC, deleteTaskAC, editTaskAC } from '../Redux/store'
 import { reduxForm } from 'redux-form';
 
 const ToDoListForm = reduxForm({
@@ -29,7 +29,8 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = {
     addTask: addTaskAC,
     stageOfDone: stageOfDoneAC,
-    deleteTask: deleteTaskAC
+    deleteTask: deleteTaskAC,
+    editTask: editTaskAC,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoListContainer)
