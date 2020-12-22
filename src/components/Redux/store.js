@@ -27,7 +27,7 @@ const appReducer = (state = initialState, action) => {
                 taskList: [...state.taskList]
             }
             let idTask = stateCopy.taskList.length + 1;
-            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false });
+            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, edit: false });
 
             localStorage.setItem('taskList', JSON.stringify(stateCopy.taskList))
 
@@ -46,10 +46,16 @@ const appReducer = (state = initialState, action) => {
             localStorage.setItem('taskList', JSON.stringify(arr))
             return stateCopy;
         case EDIT_TASK:
+            let arrEdit = state.taskList.map((item) => {
+                if (item.id == action.idTask) {
+                    item.edit = !item.edit
+                }
+                return item
+            })
             stateCopy = {
-                ...state
+                ...state,
+                taskList: [...arrEdit]
             }
-                alert(action.idTask)
             return stateCopy;   
         case DELETE_TASK:
             let arrfilter = state.taskList.filter((item) => {

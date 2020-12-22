@@ -37,3 +37,12 @@
   cursor: pointer;
   opacity: 0.7;
 }
+.editTask_input {
+  border: none;
+  outline: none;
+  width: 92%;
+}
+.editTask_button {
+  color: green;
+  margin-left: 5px;
+}
