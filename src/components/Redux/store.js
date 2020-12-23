@@ -22,6 +22,10 @@ let initialState = {
 const appReducer = (state = initialState, action) => {
     let stateCopy;
 
+    let date = new Date();
+    let createDate = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+    let createTime = `${date.getHours()}:${date.getMinutes()}`;
+
     switch (action.type) {
         case ADD_NEW_TASK:
             stateCopy = {
@@ -29,10 +33,10 @@ const appReducer = (state = initialState, action) => {
                 taskList: [...state.taskList]
             }
             const idTask = `f${(~~(Math.random() * 1e8)).toString(16)}`;
-            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, edit: false });
+            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, edit: false, createDateTask: {date: createDate, time: createTime}});
 
             localStorage.setItem('taskList', JSON.stringify(stateCopy.taskList))
-
+            console.log(stateCopy)
             return stateCopy;
         case STAGE_OF_DONE:
             let arr = state.taskList.map((item) => {
@@ -61,9 +65,12 @@ const appReducer = (state = initialState, action) => {
             localStorage.setItem('taskList', JSON.stringify(arrEdit))
             return stateCopy;
         case EDIT_TEXT_TASK:
+
             let arrEditText = state.taskList.map((item) => {
                 if (item.id == action.idTask) {
-                    item.text = action.textTask
+                    item.text = action.textTask;
+                    item.createDateTask.time = `ред. ${createTime}`;
+                    item.createDateTask.data = createDate;
                 }
                 return item
             })

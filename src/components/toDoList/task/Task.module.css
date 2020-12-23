@@ -12,13 +12,17 @@
 .taskDoneAll {
   background-color: rgba(0, 255, 115, 0.507);
 }
-.taskText {
+.task {
   width: 100%;
   border-bottom: 3px dashed rgba(0, 0, 0, 0.507);
   margin: 10px 5px;
   padding: 0 10px;
   font-weight: 600;
   font-style: italic
+}
+.task_info {
+  display: flex;
+  justify-content: space-between;
 }
 .checked, .unChecked {
   border: 3px solid rgb(0, 0, 0);
@@ -32,13 +36,20 @@
   font-size: 20px;
   margin-left: 5px;
 }  
-.editTask_input {
+.task_input {
   border: none;
   outline: none;
   background: none;
   width: 92%;
   font-weight: 600;
   font-style: italic;
+}
+.task_data {
+  font-size: 10px;
+  align-self: flex-end;
+  text-align: right;
+  color: rgb(71, 71, 71);
+  font-weight: 300;
 }
 .editTask_button {
   color: green;

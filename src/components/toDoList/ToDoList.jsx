@@ -20,11 +20,13 @@ const ToDoList = (props) => {
     let doneTask = props.taskList.filter(item => item.done)
     let allTask = undoneTask.concat(doneTask)
     let resultAllTask = allTask.map((item) => {
-        return <Task text={item.text} done={item.done} edit={item.edit}
+        return <Task key={item.id} text={item.text} done={item.done} edit={item.edit}
             stageOfDone={props.stageOfDone} id={item.id}
             deleteTask={props.deleteTask} editTask={props.editTask}
-            editTextTask={props.editTextTask} />
+            editTextTask={props.editTextTask} date={item.createDateTask.date}
+            time={item.createDateTask.time}/>
     })
+    console.log(props)
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);
     return (
