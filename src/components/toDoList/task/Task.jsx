@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faCheckDouble, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faCheckCircle, faPencilAlt, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import styles from './Task.module.css'
 
 
@@ -15,7 +15,9 @@ const Task = (props) => {
     const onEditTask = () => {
         props.editTask(props.id)
     }
-
+    const onChangeTask = (e) => {
+        props.editTextTask(props.id, e.target.value)
+    }
     const checked = <FontAwesomeIcon icon={faCheck} className={styles.checked} onClick={onStageOfDone} />
     const unChecked = <FontAwesomeIcon icon={faCheck} className={styles.unChecked} onClick={onStageOfDone} />
     return (
@@ -26,13 +28,17 @@ const Task = (props) => {
                 <div className={styles.taskText}>
                     {props.edit ?
                         <div className={styles.editTask}>
-                            <input className={styles.editTask_input} type="text" placeholder={props.text} />
-                            <FontAwesomeIcon icon={faCheckDouble} className={styles.editTask_button} />
+                            <input className={styles.editTask_input} type="text" placeholder={props.text} 
+                            onChange={onChangeTask} value={props.text} autoFocus={true}/>
                         </div> :
                         props.text}
                 </div>
-            <FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditTask} />
-            <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask} />
+            {props.edit ? 
+            <FontAwesomeIcon icon={faCheckCircle} className={styles.editTask_button} onClick={onEditTask}/> :
+            <FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditTask} /> }
+            {props.edit ? 
+            <FontAwesomeIcon icon={faTimesCircle} className={styles.times} onClick={onEditTask} />:
+            <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask} />}
         </div >
     )
 }

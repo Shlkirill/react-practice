@@ -22,7 +22,8 @@ const ToDoList = (props) => {
     let resultAllTask = allTask.map((item) => {
         return <Task text={item.text} done={item.done} edit={item.edit}
             stageOfDone={props.stageOfDone} id={item.id}
-            deleteTask={props.deleteTask} editTask={props.editTask} />
+            deleteTask={props.deleteTask} editTask={props.editTask}
+            editTextTask={props.editTextTask} />
     })
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);

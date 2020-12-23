@@ -3,12 +3,14 @@ import { reducer as formReducer } from 'redux-form';
 
 const ADD_NEW_TASK = 'ADD_NEW_TASK';
 const STAGE_OF_DONE = 'STAGE_OF_DONE';
-const EDIT_TASK = 'EDIT_TASK';
+const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE';
+const EDIT_TEXT_TASK = 'EDIT_TEXT_TASK';
 const DELETE_TASK = 'DELETE_TASK';
 
 export const addTaskAC = (task) => ({ type: ADD_NEW_TASK, task });
 export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
-export const editTaskAC = (idTask) => ({ type: EDIT_TASK, idTask})
+export const editTaskAC = (idTask) => ({ type: TOGGLE_EDIT_MODE, idTask })
+export const editTextTaskAC = (idTask, textTask) => ({ type: EDIT_TEXT_TASK, idTask, textTask })
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
 let localBaseTask = JSON.parse(localStorage.getItem('taskList'))
@@ -26,7 +28,7 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 taskList: [...state.taskList]
             }
-            let idTask = stateCopy.taskList.length + 1;
+            const idTask = `f${(~~(Math.random() * 1e8)).toString(16)}`;
             stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, edit: false });
 
             localStorage.setItem('taskList', JSON.stringify(stateCopy.taskList))
@@ -45,7 +47,7 @@ const appReducer = (state = initialState, action) => {
             }
             localStorage.setItem('taskList', JSON.stringify(arr))
             return stateCopy;
-        case EDIT_TASK:
+        case TOGGLE_EDIT_MODE:
             let arrEdit = state.taskList.map((item) => {
                 if (item.id == action.idTask) {
                     item.edit = !item.edit
@@ -56,7 +58,21 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 taskList: [...arrEdit]
             }
-            return stateCopy;   
+            localStorage.setItem('taskList', JSON.stringify(arrEdit))
+            return stateCopy;
+        case EDIT_TEXT_TASK:
+            let arrEditText = state.taskList.map((item) => {
+                if (item.id == action.idTask) {
+                    item.text = action.textTask
+                }
+                return item
+            })
+            stateCopy = {
+                ...state,
+                taskList: [...arrEditText]
+            }
+            localStorage.setItem('taskList', JSON.stringify(arrEditText))
+            return stateCopy;
         case DELETE_TASK:
             let arrfilter = state.taskList.filter((item) => {
                 return (item.id !== action.idTask) ? true : false

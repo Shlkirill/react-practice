@@ -1,7 +1,7 @@
 import React from 'react'
 import ToDoList from './ToDoList'
 import { connect } from 'react-redux'
-import { addTaskAC, stageOfDoneAC, deleteTaskAC, editTaskAC } from '../Redux/store'
+import { addTaskAC, stageOfDoneAC, deleteTaskAC, editTaskAC, editTextTaskAC } from '../Redux/store'
 import { reduxForm } from 'redux-form';
 
 const ToDoListForm = reduxForm({
@@ -12,11 +12,11 @@ const ToDoListForm = reduxForm({
 
 const ToDoListContainer = (props) => {
     const onSubmit = (formData) => {
-        props.addTask(formData.newTask) 
+        props.addTask(formData.newTask)
         formData.newTask = ''
     }
     return (
-        <ToDoListForm onSubmit={onSubmit} {...props}/>
+        <ToDoListForm onSubmit={onSubmit} {...props} />
     )
 }
 
@@ -31,6 +31,7 @@ let mapDispatchToProps = {
     stageOfDone: stageOfDoneAC,
     deleteTask: deleteTaskAC,
     editTask: editTaskAC,
+    editTextTask: editTextTaskAC,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoListContainer)

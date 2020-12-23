@@ -32,17 +32,20 @@
   font-size: 20px;
   margin-left: 5px;
 }  
-.checked:hover, .unChecked:hover, .times:hover, .edit:hover {
-  font-size: 25px;
-  cursor: pointer;
-  opacity: 0.7;
-}
 .editTask_input {
   border: none;
   outline: none;
+  background: none;
   width: 92%;
+  font-weight: 600;
+  font-style: italic;
 }
 .editTask_button {
   color: green;
+  font-size: 25px;
   margin-left: 5px;
+}
+.checked:hover, .unChecked:hover, .times:hover, .edit:hover, .editTask_button:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
