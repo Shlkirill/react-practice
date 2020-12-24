@@ -21,10 +21,15 @@ let initialState = {
 
 const appReducer = (state = initialState, action) => {
     let stateCopy;
-
     let date = new Date();
-    let createDate = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-    let createTime = `${date.getHours()}:${date.getMinutes()}`;
+
+    let getDate = (date.getDate() < 10) ? '0' + date.getDate(): date.getDate();
+    let getMonth = (date.getMonth() < 10) ? '0' + date.getMonth(): date.getMonth();
+    let createDate = `${getDate}.${getMonth}.${date.getFullYear()}`
+
+    let getHours = (date.getHours() < 10) ? '0' + date.getHours(): date.getHours();
+    let getMinutes = (date.getMinutes() < 10) ? '0' + date.getMinutes(): date.getMinutes();
+    let createTime = `${getHours}:${getMinutes}`;
 
     switch (action.type) {
         case ADD_NEW_TASK:
@@ -70,7 +75,7 @@ const appReducer = (state = initialState, action) => {
                 if (item.id == action.idTask) {
                     item.text = action.textTask;
                     item.createDateTask.time = `ред. ${createTime}`;
-                    item.createDateTask.data = createDate;
+                    item.createDateTask.date = createDate;
                 }
                 return item
             })

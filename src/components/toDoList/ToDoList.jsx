@@ -3,9 +3,15 @@ import styles from './ToDoList.module.css'
 import Task from './task/Task'
 import { Field } from 'redux-form'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { required } from '../fieldLevelValidation/validation';
 
-const renderField = ({ input, label, type }) => (
-    <input {...input} type={type} className={styles.inputForm} placeholder='Напишите новую задачу' />
+const renderField = ({ input, type, meta: { touched, error, warning } }) => (
+    <div>
+        <textarea {...input} type={type} className={styles.inputForm} placeholder='Напишите новую задачу' />
+        {touched &&
+            ((error && <span>{error}</span>) ||
+                (warning && <span>{warning}</span>))}
+    </div>
 );
 
 const ToDoList = (props) => {
@@ -16,6 +22,7 @@ const ToDoList = (props) => {
         setFilterMode(filterNumber);
         setInProp(!inProp);
     }
+
     let undoneTask = props.taskList.filter(item => !item.done)
     let doneTask = props.taskList.filter(item => item.done)
     let allTask = undoneTask.concat(doneTask)
@@ -24,9 +31,9 @@ const ToDoList = (props) => {
             stageOfDone={props.stageOfDone} id={item.id}
             deleteTask={props.deleteTask} editTask={props.editTask}
             editTextTask={props.editTextTask} date={item.createDateTask.date}
-            time={item.createDateTask.time}/>
+            time={item.createDateTask.time} />
     })
-    console.log(props)
+
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);
     return (
@@ -45,7 +52,7 @@ const ToDoList = (props) => {
                     </div>
                     <form onSubmit={props.handleSubmit} className={styles.formControl}>
                         <Field className={styles.input} name='newTask'
-                            component={renderField} type="text" />
+                            component={renderField} validate={[required]} />
                         <button className={styles.addTask}>Добавить</button>
                     </form>
                     <TransitionGroup in={inProp} timeout={500} classNames={{

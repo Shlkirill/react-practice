@@ -52,6 +52,8 @@
    outline: none;
    border: none;
    border-bottom: 1px solid;
+   resize: none;
+   font-size: 18px;
  }
  .filter {
    display: flex;

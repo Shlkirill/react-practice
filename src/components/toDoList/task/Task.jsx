@@ -17,6 +17,9 @@ const Task = (props) => {
     const onChangeTask = (e) => {
         props.editTextTask(props.id, e.target.value)
     }
+    const onKeyDown = (e) => {
+        if (e.code == 'Enter') props.editTask(props.id)
+    }
     const checked = <FontAwesomeIcon icon={faCheck} className={styles.checked} onClick={onStageOfDone} />
     const unChecked = <FontAwesomeIcon icon={faCheck} className={styles.unChecked} onClick={onStageOfDone} />
     return (
@@ -28,19 +31,17 @@ const Task = (props) => {
                 {props.edit ?
                     <div className={styles.task_edit}>
                         <input className={styles.task_input} type="text" placeholder={props.text}
-                            onChange={onChangeTask} value={props.text} autoFocus={true} />
+                            onChange={onChangeTask} value={props.text} autoFocus={true} onKeyDown={onKeyDown} />
                     </div> :
                     <div className={styles.task_info}>
                         <div className={styles.task_text}>{props.text}</div>
-                        <div className={styles.task_data}>{props.time}<br/>{props.date}</div>
+                        <div className={styles.task_data}>{props.time}<br />{props.date}</div>
                     </div>}
             </div>
             {props.edit ?
                 <FontAwesomeIcon icon={faCheckCircle} className={styles.editTask_button} onClick={onEditTask} /> :
                 <FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditTask} />}
-            {props.edit ?
-                <FontAwesomeIcon icon={faTimesCircle} className={styles.times} onClick={onEditTask} /> :
-                <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask} />}
+            {props.edit ? null : <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask}/>}
         </div >
     )
 }

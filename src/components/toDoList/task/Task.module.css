@@ -17,12 +17,17 @@
   border-bottom: 3px dashed rgba(0, 0, 0, 0.507);
   margin: 10px 5px;
   padding: 0 10px;
-  font-weight: 600;
-  font-style: italic
 }
 .task_info {
   display: flex;
   justify-content: space-between;
+  word-break: break-all;
+}
+.task_text {
+  align-self: center;
+  font-weight: 600;
+  font-style: italic;
+  max-width: 85%;
 }
 .checked, .unChecked {
   border: 3px solid rgb(0, 0, 0);
