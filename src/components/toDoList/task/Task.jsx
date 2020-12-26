@@ -4,7 +4,10 @@ import { faCheck, faCheckCircle, faPencilAlt, faTimes, faTimesCircle } from '@fo
 import styles from './Task.module.css'
 
 
+
 const Task = (props) => {
+    const [changeTask, setChangeTask] = useState(props.text);
+
     const onStageOfDone = () => {
         props.stageOfDone(props.id)
     }
@@ -15,10 +18,18 @@ const Task = (props) => {
         props.editTask(props.id)
     }
     const onChangeTask = (e) => {
-        props.editTextTask(props.id, e.target.value)
+        setChangeTask(e.target.value)
+        console.log(changeTask)
     }
-    const onKeyDown = (e) => {
-        if (e.code == 'Enter') props.editTask(props.id)
+    const onEditTextTask = () => {
+        props.editTextTask(props.id, changeTask)
+        props.editTask(props.id)
+        console.log(changeTask, props.text)
+    }
+    const onNotEditTextTask = () => {
+        props.editTextTask(props.id, props.task)
+        props.editTask(props.id)
+        console.log(changeTask, props.text)
     }
     const checked = <FontAwesomeIcon icon={faCheck} className={styles.checked} onClick={onStageOfDone} />
     const unChecked = <FontAwesomeIcon icon={faCheck} className={styles.unChecked} onClick={onStageOfDone} />
@@ -31,7 +42,7 @@ const Task = (props) => {
                 {props.edit ?
                     <div className={styles.task_edit}>
                         <input className={styles.task_input} type="text" placeholder={props.text}
-                            onChange={onChangeTask} value={props.text} autoFocus={true} onKeyDown={onKeyDown} />
+                            onChange={onChangeTask} value={changeTask} autoFocus={true} />
                     </div> :
                     <div className={styles.task_info}>
                         <div className={styles.task_text}>{props.text}</div>
@@ -39,9 +50,11 @@ const Task = (props) => {
                     </div>}
             </div>
             {props.edit ?
-                <FontAwesomeIcon icon={faCheckCircle} className={styles.editTask_button} onClick={onEditTask} /> :
+                <FontAwesomeIcon icon={faCheckCircle} className={styles.editTask_button} onClick={onEditTextTask} /> :
                 <FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditTask} />}
-            {props.edit ? null : <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask}/>}
+            {props.edit ?
+                <FontAwesomeIcon icon={faTimesCircle} className={styles.editTask_TimesButton} onClick={onEditTask} /> :
+                <FontAwesomeIcon icon={faTimes} className={styles.times} onClick={onDeleteTask} />}
         </div >
     )
 }

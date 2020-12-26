@@ -41,8 +41,13 @@
     display: flex;
     justify-content: space-around;
   }
+.inputForm_container {
+    position: relative;
+    width: 100%;
+    margin-left: 10px;
+  }
  .inputForm {
-   width: 70%;
+   width: 90%;
    height: 30px;
    background: none;
    font-weight: 600;
@@ -54,6 +59,14 @@
    border-bottom: 1px solid;
    resize: none;
    font-size: 18px;
+ }
+ .inputForm_error {
+   position: absolute;
+   color: red;
+   right: 20px;
+   bottom: -5px;
+   font-size: 12px;
+   font-style: italic;
  }
  .filter {
    display: flex;

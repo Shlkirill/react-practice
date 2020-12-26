@@ -5,14 +5,19 @@ import { Field } from 'redux-form'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { required } from '../fieldLevelValidation/validation';
 
-const renderField = ({ input, type, meta: { touched, error, warning } }) => (
-    <div>
-        <textarea {...input} type={type} className={styles.inputForm} placeholder='Напишите новую задачу' />
-        {touched &&
-            ((error && <span>{error}</span>) ||
-                (warning && <span>{warning}</span>))}
-    </div>
-);
+export const renderField = ({ input, type, meta: { submitFailed, error, warning },} ) => {
+    return (
+        <div className={styles.inputForm_container}>
+            <div>
+                <textarea {...input} type={type} className={styles.inputForm} placeholder='Напишите новую задачу' />
+            </div>
+            <div className={styles.inputForm_error}>
+                {submitFailed && ((error && <span >{error}</span>) ||
+                    (warning && <span className={styles.inputForm_error}>{warning}</span>))}
+            </div>
+        </div>
+    )
+};
 
 const ToDoList = (props) => {
     const [filterMode, setFilterMode] = useState(1);
@@ -36,6 +41,7 @@ const ToDoList = (props) => {
 
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);
+    console.log(props)
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
