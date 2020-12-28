@@ -3,13 +3,11 @@ import { reducer as formReducer } from 'redux-form';
 
 const ADD_NEW_TASK = 'ADD_NEW_TASK';
 const STAGE_OF_DONE = 'STAGE_OF_DONE';
-const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE';
 const EDIT_TEXT_TASK = 'EDIT_TEXT_TASK';
 const DELETE_TASK = 'DELETE_TASK';
 
 export const addTaskAC = (task) => ({ type: ADD_NEW_TASK, task });
 export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
-export const editTaskAC = (idTask) => ({ type: TOGGLE_EDIT_MODE, idTask })
 export const editTextTaskAC = (idTask, textTask) => ({ type: EDIT_TEXT_TASK, idTask, textTask })
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
@@ -38,7 +36,7 @@ const appReducer = (state = initialState, action) => {
                 taskList: [...state.taskList]
             }
             const idTask = `f${(~~(Math.random() * 1e8)).toString(16)}`;
-            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, edit: false, createDateTask: {date: createDate, time: createTime}});
+            stateCopy.taskList.unshift({ id: idTask, text: action.task, done: false, createDateTask: {date: createDate, time: createTime}});
 
             localStorage.setItem('taskList', JSON.stringify(stateCopy.taskList))
             console.log(stateCopy)
@@ -55,19 +53,6 @@ const appReducer = (state = initialState, action) => {
                 taskList: [...arr]
             }
             localStorage.setItem('taskList', JSON.stringify(arr))
-            return stateCopy;
-        case TOGGLE_EDIT_MODE:
-            let arrEdit = state.taskList.map((item) => {
-                if (item.id == action.idTask) {
-                    item.edit = !item.edit
-                }
-                return item
-            })
-            stateCopy = {
-                ...state,
-                taskList: [...arrEdit]
-            }
-            localStorage.setItem('taskList', JSON.stringify(arrEdit))
             return stateCopy;
         case EDIT_TEXT_TASK:
 
