@@ -11,7 +11,7 @@ export const stageOfDoneAC = (idTask) => ({ type: STAGE_OF_DONE, idTask });
 export const editTextTaskAC = (idTask, textTask) => ({ type: EDIT_TEXT_TASK, idTask, textTask })
 export const deleteTaskAC = (idTask) => ({ type: DELETE_TASK, idTask });
 
-let localBaseTask = JSON.parse(localStorage.getItem('taskList'))
+let localBaseTask = JSON.parse(localStorage.getItem('taskList')) || []
 
 let initialState = {
     taskList: [...localBaseTask]
@@ -22,7 +22,7 @@ const appReducer = (state = initialState, action) => {
     let date = new Date();
 
     let getDate = (date.getDate() < 10) ? '0' + date.getDate(): date.getDate();
-    let getMonth = (date.getMonth() < 10) ? '0' + date.getMonth(): date.getMonth();
+    let getMonth = (date.getMonth() < 10) ? '0' + (date.getMonth() + 1): date.getMonth() + 1;
     let createDate = `${getDate}.${getMonth}.${date.getFullYear()}`
 
     let getHours = (date.getHours() < 10) ? '0' + date.getHours(): date.getHours();
