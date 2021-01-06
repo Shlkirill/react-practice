@@ -1,5 +1,9 @@
 @import './fonts/fonts.css';
-body {
+a {
+  color: black;
+  text-decoration: none;
+}
+body, input {
   margin: 0;
   font-family: 'Montserrat';
   -webkit-font-smoothing: antialiased;
