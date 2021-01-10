@@ -1,16 +1,20 @@
 import React from 'react'
 import Header from './components/Header/Header';
 import ToDoListContainer from './components/toDoList/ToDiListContainer';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import PracticeContainer from './components/Practice/PracticeContainer';
 
 class App extends React.Component {
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <Route path='/toDoList'> <ToDoListContainer /> </Route>
-        <Route path='/*'><Redirect to = {'/toDoList'} /></Route>
+          <Header />
+        <Switch>  
+          <Route path='/toDoList'> <ToDoListContainer /> </Route>
+          <Route path='/practice'><PracticeContainer /></Route>
+          <Route path='/*'><Redirect to={'/toDoList'} /></Route>
+        </Switch>
       </div >
     )
   }

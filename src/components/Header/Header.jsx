@@ -9,7 +9,7 @@ const Header = () => {
                 <h3>Menu: </h3>
                 <ul className={styles.menu}>
                     <li><NavLink to='/toDoList' activeClassName={styles.active}>To Do List</NavLink></li>
-                    <li><NavLink to='/games' activeClassName={styles.active}>Games</NavLink> </li>
+                    <li><NavLink to='/practice' activeClassName={styles.active}>Practice</NavLink> </li>
                 </ul>
             </div>
         </div>
