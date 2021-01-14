@@ -15,7 +15,6 @@ const staffReducer = (state = initialState, action) => {
     switch (action.type) {
         case EDIT_VALUE:
             let arr = state.staffList.map(item => {
-                debugger;
                 if (action.trigger == 'DAYS') {
                     if (item.id == action.id) item.daysWorked = action.value
                 }
