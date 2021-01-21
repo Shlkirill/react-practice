@@ -1,49 +1,69 @@
-const CHECKING_ANSWER = 'CHECKING_ANSWER'
+const SELECTED_ANSWER = 'SELECTED_ANSWER'
 
-export const ChekingAnswerACTWO = (id, answer) => ({ type: CHECKING_ANSWER, id, answer })
+export const selectedAnswerACTWO = (questionId, answerId) => ({ type: SELECTED_ANSWER, questionId, answerId })
 
 let initialState = {
     questions: 
-    [{id: 124, question: 'Чем меньше воды, тем больше глубина. Что это?',
-        answer: [{ id: 1, possible: 'Литература', сorrect: true },
-        { id: 2, possible: 'Впадина', сorrect: false },
-        { id: 3, possible: 'Вулкан', сorrect: false },
-        { id: 4, possible: 'Знания', сorrect: false }]},
-    { id: 345, question: 'Накормишь – живет, напоишь – умрет. О чем речь?', 
-        answer: [{ id: 1, possible: 'Память', сorrect: false },
-        { id: 2, possible: 'Жажда', сorrect: false },
-        { id: 3, possible: 'Огонь', сorrect: true },
-        { id: 4, possible: 'Муж', сorrect: false }]},
-    { id: 7, question: 'Вам дали, вам принадлежит. Вы не продавали, а пользуются все знакомые.', 
-        answer: [{ id: 1, possible: 'Умения', сorrect: false },
-        { id: 2, possible: 'Машина', сorrect: false },
-        { id: 3, possible: 'Щедрость', сorrect: false },
-        { id: 4, possible: 'Имя', сorrect: true }]},
-    { id: 8, question: 'Чего боятся люди, которые страдают алекторофобией?', 
-        answer: [{ id: 1, possible: 'собак', сorrect: false },
-        { id: 2, possible: 'Кур', сorrect: true },
-        { id: 3, possible: 'Бороды', сorrect: false },
-        { id: 4, possible: 'Чеснок', сorrect: false }]}],
-    answersGiven: false
+    [{id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Чем меньше воды, тем больше глубина. Что это?',
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Литература', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Впадина', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Вулкан', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Знания', correct: false }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Накормишь – живет, напоишь – умрет. О чем речь?', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Память', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Жажда', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Огонь', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Муж', correct: false }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Вам дали, вам принадлежит. Вы не продавали, а пользуются все.', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Умения', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Машина', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Щедрость', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Имя', correct: true }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Чего боятся люди, которые страдают алекторофобией?', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Cобак', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Кур', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Бороды', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Чеснок', correct: false }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Какого газа в атмосфере Земли больше всего?', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Кислород', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Угл. газ', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Азот', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Водород', correct: false }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Назовите столицу Европейского Союза?', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Вена', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Брюсель', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Кельн', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: 'Париж', correct: false }], answerUser: ''},
+    { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, question: 'Как далеко находится Земля от Солнца?', 
+        answer: [{ id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: '149 000 000 км', correct: true },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: '14 900 км', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: '257 800 000 км', correct: false },
+        { id: `f${(~~(Math.random() * 1e8)).toString(16)}`, possible: '190 000 000 км', correct: false }], answerUser: ''}],
+    answersGiven: 0,
+    correctAnswers: 0,
 }
 
 const testReducer = (state = initialState, action) => {
     let stateCopy;
     switch (action.type) {
-        case CHECKING_ANSWER:
-            let testAnswersGiven;
+        case SELECTED_ANSWER:
             let arr = state.questions.map(item => {
-                if (action.id == item.id) {
-                    item.answerUser = action.answer
+                if (item.id == action.questionId) {
+                    item.answer.map(answerItem =>{
+                        if (answerItem.id == action.answerId) {
+                            item.answerUser = answerItem.possible
+                            state.answersGiven++;
+                            if (answerItem.correct) state.correctAnswers++
+                        }
+                    })
+                    return item    
                 }
-                item.answerUser == '' ? testAnswersGiven = false : testAnswersGiven = true;
-                return item
+                return item 
             })
-            console.log(arr)
+            console.log(state.correctAnswers)
             stateCopy = {
                 ...state,
-                questions: [...state.questions],
-                answersGiven: testAnswersGiven
+                questions: [...arr],
             }
             return stateCopy
         default:

@@ -3,80 +3,59 @@ import Slider from 'react-slick';
 import QuestionTwo from './QuestionTwo/QuestionTwo';
 import styles from './TestTwo.module.css'
 
-const TestTwo = ({ test, chekingAnswer, answersGiven }) => {
-  const [testDone, setTestDone] = useState(false)
+const TestTwo = ({ test, answersGivenTwo, selectedAnswer, correctAnswers }) => {
+    const [testDone, setTestDone] = useState(false)
 
-  // function SampleNextArrow(props) {
-  //     const { className, style, onClick } = props;
-  //     return (
-  //       <div
-  //         className={className}
-  //         style={{ ...style, display: "block", background: "red" }}
-  //         onClick={onClick}
-  //       />
-  //     );
-  //   }
+    const customeSlider = React.createRef();
+    const [sliderSettings, setSliderSettings] = useState({
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    })
 
-  //   function SamplePrevArrow(props) {
-  //     const { className, style, onClick } = props;
-  //     return (
-  //       <div
-  //         className={className}
-  //         style={{ ...style, display: "block", background: "green" }}
-  //         onClick={onClick}
-  //       />
-  //     );
-  //   }
+    const gotoNext = () => {
+        customeSlider.current.slickNext()
+    }
 
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   nextArrow: <SampleNextArrow />,
-  //   prevArrow: <SamplePrevArrow />
-  // };
+    const gotoPrev = () => {
+        customeSlider.current.slickPrev()
+    }
 
-  // setting slider configurations
-  debugger
-  const customeSlider = React.creatRef();
-  const [sliderSettings, setSliderSettings] = useState({
-    infinite: true,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    arrows: false,
-  })
-  // const gotoNext = () => {
-  //   customeSlider.current.slickNext()
-  // }
+    let questions = test.map(item => {
+        return <QuestionTwo key={item.id} id={item.id} question={item.question}
+            answer={item.answer} answerUser={item.answerUser} selectedAnswer={selectedAnswer}
+            testDone={testDone} gotoNext={gotoNext} />
+    })
 
-  // const gotoPrev = () => {
-  //   customeSlider.current.slickPrev()
-  // }
-
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <h3>Задание № 2 (Тест)</h3>
-        {/* <button onClick={() => gotoNext()}>Next</button>
-        <button onClick={() => gotoPrev()}>Previous</button> */}
-        <Slider {...sliderSettings} ref={customeSlider}>
-          {test.map(item => {
-            return <QuestionTwo key={item.id} id={item.id} question={item.question}
-              answer={item.answer} answerUser={item.answerUser} chekingAnswer={chekingAnswer}
-              testDone={testDone} />
-          })}
-        </Slider>
-        <div className={styles.button_container}>
-          {!testDone ?
-            <button onClick={() => { setTestDone(!testDone) }} disabled={answersGiven ? false : true}
-              className={styles.button}> Сдать тест</button> :
-            null}
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
+                <h3>Задание № 3 (Тест)</h3>
+                {!testDone ?
+                    <div>
+                        <Slider {...sliderSettings} ref={customeSlider}>
+                            {questions}
+                        </Slider>
+                        <div className={styles.navigation_container}>
+                            <button className={styles.buttonNavigation} onClick={() => gotoPrev()}>Предыдущий <br/> вопрос</button>
+                            <button className={styles.buttonNavigation} onClick={() => gotoNext()}>Следующий <br/> вопрос</button>
+                        </div>
+                        <div className={styles.button_container}>
+                            <button onClick={() => { setTestDone(!testDone) }} disabled={answersGivenTwo !== test.length}
+                                className={styles.button}> Сдать тест</button>
+                        </div>
+                    </div> :
+                    <div>
+                        <div className={styles.doneContainer}>
+                            {questions}
+                        </div>
+                        <p className={styles.doneInfo}>Колличество Ваших правильных ответов - <span>{correctAnswers}</span></p>
+                    </div>}
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default TestTwo

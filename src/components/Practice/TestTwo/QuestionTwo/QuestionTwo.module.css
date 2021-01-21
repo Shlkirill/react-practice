@@ -12,6 +12,8 @@
 }
 .question {
     text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
 }
 .navigation {
     text-align: center;
@@ -30,6 +32,7 @@
     margin-top: 20px;
 }
 .possibleAnswer {
+    position: relative;
 	box-shadow:inset -9px -9px 0px -18px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color:#ffffff;
@@ -41,9 +44,8 @@
 	font-family:Arial;
 	font-size:14px;
 	font-weight:bold;
-	padding:12px 26px;
+	padding:16px 26px;
 	text-decoration:none;
-    text-shadow:0px 0px 0px #ffffff;
     outline: none;
 }
 .possibleAnswer:hover {
@@ -53,4 +55,28 @@
 .possibleAnswer:active {
 	position:relative;
 	top:1px;
+}
+.possibleAnswer:disabled {
+    background: rgb(122, 122, 122);
+    color: #fff;
+    text-shadow: none;
+    cursor: auto;
+}
+.possibleAnswerOk:disabled  {
+    background: rgb(60, 161, 255);
+}
+.done_correct:disabled {
+    background: rgb(7, 170, 1);
+    border: 1px solid rgb(121, 255, 58);
+}
+.done_unCorrect:disabled {
+    background: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 76, 31);
+}
+.done_info {
+    position: absolute;
+    bottom: -5px;
+    left: 34px;
+    font-size: 10px;
+    font-weight: normal;
 }
