@@ -1,11 +1,18 @@
 .container {
-    position: relative;
+    position: relative; 
 }
 .tikTakToe {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     justify-content: center;
-    
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+	background-color:#ededed;
+	border-radius:6px;
 }
 .zone {
     display: flex;
@@ -14,19 +21,54 @@
     align-items: center;
     width: 100px;
     height: 100px;
-    border: 1px solid rgb(38, 0, 177);
+    border: 1px solid rgb(119, 119, 119);
+    background-color: rgb(255, 255, 255);
 }
-.zoneAbsolute {
-    position: absolute;
-    border: 1px solid rgb(72, 255, 0);
+.winLineVertical_wrapper, .winLineDiagonal_wrapper {
+    display: flex;
+    justify-content: center
+}
+
+.lineVertical , .lineHorizontal, .lineDiagonal_left, .lineDiagonal_right {
+    border: 1px solid rgb(0, 0, 0);
     z-index: 999;
-    top: 0;
-    left: 0;
 }
+.lineVertical {
+    height: 300px;
+    margin: 0px 50px;
+    margin-top: -324px;
+}
+.winLineHorizontal_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -325px;
+}
+.lineHorizontal {
+    width: 300px;
+    margin: 50px 0;
+}
+.winLineDiagonal_wrapper {
+    margin-top: -365px;
+}
+
+.lineDiagonal_left, .lineDiagonal_right {
+    height: 420px;
+}
+.lineDiagonal_left {
+    transform: rotate(45deg);
+}
+.lineDiagonal_right {
+    transform: rotate(-45deg);
+}
+.lineHide {
+    border: none;
+}
+
 .circle {
     width: 50px;
     height: 50px;
-    border: 13px solid #000;
+    border: 13px solid rgb(221, 221, 26);
     border-radius: 50%;
 }
 .times {
@@ -34,5 +76,6 @@
     font-weight: 100;
 }
 .zoneWiner {
-    border: 1px solid rgb(255, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(240, 240, 240);
 }
