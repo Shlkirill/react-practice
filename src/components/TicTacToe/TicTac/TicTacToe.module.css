@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: 100px 100px 100px;
     justify-content: center;
+    position: relative;
     width: 300px;
     margin: 0 auto;
     padding: 20px;
@@ -24,36 +25,47 @@
     border: 1px solid rgb(119, 119, 119);
     background-color: rgb(255, 255, 255);
 }
-.winLineVertical_wrapper, .winLineDiagonal_wrapper {
+.allLineWrapper {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+.winLineVertical_wrapper, .winLineHorizontal_wrapper, .winLineDiagonal_wrapper {
     display: flex;
-    justify-content: center
+    justify-content: space-around;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+}
+
+.winLineDiagonal_wrapper {
+    justify-content: center;
+    top: -57px;
+}
+.winLineHorizontal_wrapper {
+    flex-direction: column;
 }
 
 .lineVertical , .lineHorizontal, .lineDiagonal_left, .lineDiagonal_right {
-    border: 1px solid rgb(0, 0, 0);
-    z-index: 999;
+    width: 8px;
+    background-color: none;
+    border-radius: 40%;
+
 }
 .lineVertical {
     height: 300px;
-    margin: 0px 50px;
-    margin-top: -324px;
-}
-.winLineHorizontal_wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -325px;
 }
 .lineHorizontal {
     width: 300px;
-    margin: 50px 0;
-}
-.winLineDiagonal_wrapper {
-    margin-top: -365px;
+    height: 5px;
 }
 
 .lineDiagonal_left, .lineDiagonal_right {
-    height: 420px;
+    height: 410px;
 }
 .lineDiagonal_left {
     transform: rotate(45deg);
@@ -61,10 +73,17 @@
 .lineDiagonal_right {
     transform: rotate(-45deg);
 }
-.lineHide {
-    border: none;
+.allLineHide {
+    display: none;
 }
-
+.lineHideBlue {
+    background-color: rgb(0, 28, 112);
+    box-shadow: 0px 0px 16px 13px rgba(0, 17, 255, 0.2);
+}
+.lineHideYellow {
+    background-color: rgb(221, 221, 26);
+    box-shadow: 0px 0px 16px 13px rgb(221, 221, 26);
+}
 .circle {
     width: 50px;
     height: 50px;
@@ -74,6 +93,7 @@
 .times {
     font-size: 95px;
     font-weight: 100;
+    color: rgb(0, 28, 112);
 }
 .zoneWiner {
     border: 1px solid rgb(0, 0, 0);
