@@ -25,6 +25,7 @@ const TikTakToe = () => {
     let [combinationX, setCombinationX] = useState([]);
     let [combinationO, setCombinationO] = useState([]);
     let [winnerIndicator, setWinnerIndicator] = useState(false);
+    let [winnerIndicatorTwo, setWinnerIndicatorTwo] = useState(false);
     let [winnerID, setWinnerID] = useState(null);
 
     useEffect(() => {
@@ -37,13 +38,17 @@ const TikTakToe = () => {
 
     let clearFild = () => {
         setTimeout(() => {
+            setWinnerIndicatorTwo(true)
+        }, 3000);
+        setTimeout(() => {
             setState(stateArr);
             setCombinationX([]);
             setCombinationO([]);
             setWinnerIndicator(false);
+            setWinnerIndicatorTwo(false)
             setPriorityCircle(false);
             setWinnerID(null);
-        }, 3000);
+        }, 6000);
     }
 
     const victoryCheck = () => {
@@ -101,24 +106,31 @@ const TikTakToe = () => {
     })
     return (
         <div className={styles.container}>
-            <div className={styles.tikTakToe}>
-                {renderState}
-                <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
-                    <div className={styles.winLineVertical_wrapper}>
-                        <div className={styles.lineVertical + " " + (winnerID == 3 && styles.lineHideBlue)}></div>
-                        <div className={styles.lineVertical + " " + (winnerID == 4 && styles.lineHideBlue)}></div>
-                        <div className={styles.lineVertical + " " + (winnerID == 5 && styles.lineHideBlue)}></div>
-                    </div>
-                    <div className={styles.winLineHorizontal_wrapper}>
-                        <div className={styles.lineHorizontal + " " + (winnerID == 0 && styles.lineHideBlue)}></div>
-                        <div className={styles.lineHorizontal + " " + (winnerID == 1 && styles.lineHideBlue)}></div>
-                        <div className={styles.lineHorizontal + " " + (winnerID == 2 && styles.lineHideBlue)}></div>
-                    </div>
-                    <div className={styles.winLineDiagonal_wrapper}>
-                        <div className={styles.lineDiagonal_right + " " + (winnerID == 6 && styles.lineHideBlue)}></div>
-                        <div className={styles.lineDiagonal_left + " " + (winnerID == 7 && styles.lineHideBlue)}></div>
-                    </div>
-                </div>
+            <div className={styles.tikTakToe_wrapper}>
+                {!winnerIndicatorTwo ?
+                    <div className={styles.tikTakToe}>
+                        {renderState}
+                        <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
+                            <div className={styles.winLineHorizontal_wrapper}>
+                                <div className={styles.lineHorizontal + " " + (winnerID == 0 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                <div className={styles.lineHorizontal + " " + (winnerID == 1 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                <div className={styles.lineHorizontal + " " + (winnerID == 2 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                            </div>
+                            <div className={styles.winLineVertical_wrapper}>
+                                <div className={styles.lineVertical + " " + (winnerID == 3 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                <div className={styles.lineVertical + " " + (winnerID == 4 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                <div className={styles.lineVertical + " " + (winnerID == 5 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                            </div>
+                            <div className={styles.winLineDiagonal_wrapper}>
+                                <div className={styles.lineDiagonal_right + " " + (winnerID == 6 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                <div className={styles.lineDiagonal_left + " " + (winnerID == 7 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                            </div>
+                        </div>
+                    </div> :
+                    <div className={styles.winner_container}>
+                        <div className={styles.winner_icon}>{priorityCircle ? times : circle}</div>
+                        <p className={priorityCircle ? styles.winner_textTimes : styles.winner_textCircle}>ПОБЕДИТЕЛЬ!</p>
+                    </div>}
             </div>
         </div>
     )
