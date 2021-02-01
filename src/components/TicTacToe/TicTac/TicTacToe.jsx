@@ -26,6 +26,7 @@ const TikTakToe = () => {
     let [combinationO, setCombinationO] = useState([]);
     let [winnerIndicator, setWinnerIndicator] = useState(false);
     let [winnerIndicatorTwo, setWinnerIndicatorTwo] = useState(false);
+    let [drawIndicator, setDrawIndicator] = useState(false);
     let [winnerID, setWinnerID] = useState(null);
 
     useEffect(() => {
@@ -48,6 +49,7 @@ const TikTakToe = () => {
             setWinnerIndicatorTwo(false)
             setPriorityCircle(false);
             setWinnerID(null);
+            setDrawIndicator(false)
         }, 6000);
     }
 
@@ -74,6 +76,7 @@ const TikTakToe = () => {
         if ((combinationO.length + combinationX.length) == 9 && !finish) {
             clearFild()
             setWinnerIndicator(true)
+            setDrawIndicator(true)
         }
 
     }
@@ -128,8 +131,18 @@ const TikTakToe = () => {
                         </div>
                     </div> :
                     <div className={styles.winner_container}>
-                        <div className={styles.winner_icon}>{priorityCircle ? times : circle}</div>
-                        <p className={priorityCircle ? styles.winner_textTimes : styles.winner_textCircle}>ПОБЕДИТЕЛЬ!</p>
+                        {!drawIndicator ?
+                            <div>
+                                <div className={styles.winner_icon}>{priorityCircle ? times : circle}</div>
+                                <p className={priorityCircle ? styles.winner_textTimes : styles.winner_textCircle}>ПОБЕДИТЕЛЬ!</p>
+                            </div> :
+                            <div>
+                                <div className={styles.draw_icon} >
+                                    {times} {circle}
+                                </div>
+                                <p className={styles.draw_text}>НИЧЬЯ!</p>
+                            </div>
+                        }
                     </div>}
             </div>
         </div>

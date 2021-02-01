@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styles from './ToDoList.module.css'
 import Task from './task/Task'
 import { Field } from 'redux-form'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { required } from '../fieldLevelValidation/validation';
 
 export const renderField = ({ input, type, meta: { submitFailed, error, warning },} ) => {
@@ -40,7 +39,6 @@ const ToDoList = (props) => {
 
     let resultDoneTask = resultAllTask.filter((item) => item.props.done);
     let resultUnDoneTask = resultAllTask.filter((item) => !item.props.done);
-    console.log(props)
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -60,23 +58,11 @@ const ToDoList = (props) => {
                             component={renderField} validate={[required]} />
                         <button className={styles.addTask}>Добавить</button>
                     </form>
-                    <TransitionGroup in={inProp} timeout={500} classNames={{
-                        appearActive: styles.myAppearActive,
-                        appearDone: styles.myAppearDone,
-                        enterActive: styles.myEnterActive,
-                        enterDone: styles.myEnterDone,
-                        exit: styles.myExit,
-                        exitActive: styles.myExitActive,
-                        exitDone: styles.myExitDone
-                    }} >
-                        <CSSTransition>
                             <div className={styles.hhh}>
                                 {filterMode == 1 ? resultAllTask : ''}
                                 {filterMode == 2 ? resultUnDoneTask : ''}
                                 {filterMode == 3 ? resultDoneTask : ''}
                             </div>
-                        </CSSTransition>
-                    </TransitionGroup >
                 </div>
             </div>
         </div >
