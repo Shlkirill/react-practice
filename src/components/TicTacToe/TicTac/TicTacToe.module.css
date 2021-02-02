@@ -2,6 +2,7 @@
     position: relative; 
 }
 .tikTakToe_wrapper {
+    position: relative;
     width: 300px;
     height: 300px;
     margin: 0 auto;
@@ -17,6 +18,7 @@
     grid-template-columns: 100px 100px 100px;
     justify-content: center;
     position: relative;
+    animation: animated-opa 1s;
 }
 .zone {
     display: flex;
@@ -49,8 +51,7 @@
 }
 
 .winLineDiagonal_wrapper {
-    justify-content: center;
-    top: -57px;
+position: relative;
 }
 .winLineHorizontal_wrapper {
     flex-direction: column;
@@ -64,20 +65,32 @@
 }
 .lineVertical {
     height: 300px;
+    animation: animated-vertical 1s;
 }
 .lineHorizontal {
     width: 300px;
-    height: 5px;
+    height: 8px;
+    animation: animated-horizontal 1s;
 }
-
 .lineDiagonal_left, .lineDiagonal_right {
+    position: absolute;
     height: 410px;
+    animation: animated-diagonal 1s;
 }
 .lineDiagonal_left {
-    transform: rotate(45deg);
+    left: 0px;
 }
 .lineDiagonal_right {
+    right: 0px;
+    top: 7px;
+}
+.lineDiagonal_left {
     transform: rotate(-45deg);
+    transform-origin: 100% 0 0;
+}
+.lineDiagonal_right {
+    transform: rotate(45deg);
+    transform-origin: 100% 0 0
 }
 .allLineHide {
     display: none;
@@ -106,12 +119,9 @@
     background-color: rgb(240, 240, 240);
 }
 .winner_container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 }
 .winner_icon {
     text-align: center;
@@ -130,7 +140,7 @@
     font-weight: bold;
 }
 .winner_textTimes {
-    color: rgb(0, 28, 112);    
+    color: rgb(0, 28, 112);   
 }
 .winner_textCircle {
     color: rgb(175, 175, 22);   
@@ -143,4 +153,29 @@
 .draw_text {
     text-align: center;
     color: rgb(30, 95, 0);   
+}
+
+@keyframes animated-horizontal {
+    0%{
+        width: 0px; 
+    }
+    100%{
+        width: 300px;
+    }
+}
+@keyframes animated-vertical {
+    0%{
+        height: 0px; 
+    }
+    100%{
+        height: 300px;
+    }
+}
+@keyframes animated-diagonal {
+    0%{
+        height: 0px; 
+    }
+    100%{
+        height: 410px;
+    }
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from './TicTacToe.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useTransition, animated } from 'react-spring'
+import { Transition } from 'react-spring/renderprops'
 
 let times = <FontAwesomeIcon className={styles.times} icon={faTimes} />
 let circle = <div className={styles.circle}></div>
@@ -28,7 +30,9 @@ const TikTakToe = () => {
     let [winnerIndicatorTwo, setWinnerIndicatorTwo] = useState(false);
     let [drawIndicator, setDrawIndicator] = useState(false);
     let [winnerID, setWinnerID] = useState(null);
+    let [winnerForm, setWinnerForm] = useState('');
 
+console.log(winnerForm)
     useEffect(() => {
         if (combinationO.length >= 3) { victoryCheck() }
     }, [combinationO])
@@ -40,17 +44,18 @@ const TikTakToe = () => {
     let clearFild = () => {
         setTimeout(() => {
             setWinnerIndicatorTwo(true)
+            setTimeout(() => {
+                setState(stateArr);
+                setWinnerIndicator(false);
+                setWinnerIndicatorTwo(false)
+                setCombinationX([]);
+                setCombinationO([]);
+                setWinnerID(null);
+                setDrawIndicator(false)
+                setPriorityCircle(false);
+                setWinnerForm('')
+            }, 3000);
         }, 3000);
-        setTimeout(() => {
-            setState(stateArr);
-            setCombinationX([]);
-            setCombinationO([]);
-            setWinnerIndicator(false);
-            setWinnerIndicatorTwo(false)
-            setPriorityCircle(false);
-            setWinnerID(null);
-            setDrawIndicator(false)
-        }, 6000);
     }
 
     const victoryCheck = () => {
@@ -67,6 +72,7 @@ const TikTakToe = () => {
                 setWinnerIndicator(true)
                 setWinnerID(index)
                 clearFild()
+                setWinnerForm(priorityCircle ? 'times':'circle')
                 finish = true
             }
             winnerX = 0;
@@ -102,15 +108,67 @@ const TikTakToe = () => {
     let renderState = state.map(item => {
         return (
             <div className={styles.zone + " " + (winnerIndicator && styles.zoneWiner)} id={item.id} key={item.id} onClick={onClickZone}>
-                {item.times && times}
-                {item.circle && circle}
+                <Transition
+                    items={item.times}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}>
+                    {show => show && (props => <div style={props}>{times}</div>)}
+                </Transition>
+                <Transition
+                    items={item.circle}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}>
+                    {show => show && (props => <div style={props}>{circle}</div>)}
+                </Transition>
             </div>
         )
     })
     return (
         <div className={styles.container}>
             <div className={styles.tikTakToe_wrapper}>
-                {!winnerIndicatorTwo ?
+                <Transition
+                    items={!winnerIndicatorTwo}
+                    from={{ position: 'absolute', opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}>
+                    {toggle =>
+                        toggle
+                            ? props => <div style={props} className={styles.tikTakToe}>
+                                {renderState}
+                                <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
+                                    <div className={styles.winLineHorizontal_wrapper}>
+                                        <div className={styles.lineHorizontal + " " + (winnerID == 0 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        <div className={styles.lineHorizontal + " " + (winnerID == 1 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        <div className={styles.lineHorizontal + " " + (winnerID == 2 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                    </div>
+                                    <div className={styles.winLineVertical_wrapper}>
+                                        <div className={styles.lineVertical + " " + (winnerID == 3 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        <div className={styles.lineVertical + " " + (winnerID == 4 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        <div className={styles.lineVertical + " " + (winnerID == 5 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                    </div>
+                                    <div className={styles.winLineDiagonal_wrapper}>
+                                        <div className={styles.lineDiagonal_left + " " + (winnerID == 6 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        <div className={styles.lineDiagonal_right + " " + (winnerID == 7 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                    </div>
+                                </div>
+                            </div>
+                            : props => <div style={props} className={styles.winner_container}>
+                                {!drawIndicator ?
+                                    <div>
+                                        <div className={styles.winner_icon}>{(winnerForm == 'times' &&  times) || (winnerForm == 'circle' && circle)}</div>
+                                        <p className={(winnerForm == 'times' &&  styles.winner_textTimes) || (winnerForm == 'circle' && styles.winner_textCircle)}>{winnerForm !== '' && "ПОБЕДИТЕЛЬ!"}</p>
+                                    </div> :
+                                    <div>
+                                        <div className={styles.draw_icon} >
+                                            {times} {circle}
+                                        </div>
+                                        <p className={styles.draw_text}>НИЧЬЯ!</p>
+                                    </div>
+                                }
+                            </div>}
+                </Transition>
+
+                {/* {!winnerIndicatorTwo ?
                     <div className={styles.tikTakToe}>
                         {renderState}
                         <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
@@ -143,7 +201,7 @@ const TikTakToe = () => {
                                 <p className={styles.draw_text}>НИЧЬЯ!</p>
                             </div>
                         }
-                    </div>}
+                    </div>} */}
             </div>
         </div>
     )
