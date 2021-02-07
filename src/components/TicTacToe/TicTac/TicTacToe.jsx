@@ -38,7 +38,6 @@ const TikTakToe = () => {
     let [opponentChoosingDisplay, setOpponentChoosingDisplay] = useState(true)
     let [opponentDesktop, setOpponentDesktop] = useState(false)
 
-
     useEffect(() => {
         if (combinationX.length >= 3) victoryCheck()
     }, [combinationX])
@@ -117,16 +116,16 @@ const TikTakToe = () => {
     let onClickZoneVSDesktop = (e) => {
         if (winnerIndicator) return
         let whileValue = true;
-        
+
         state.map(item => {
             if (e.target.id == item.id && item.times == false && item.circle == false) {
                 item.times = true
                 setCombinationX([...combinationX, item.id])
                 setPriorityCircle(true)
-                console.log(combinationO.length, combinationX.length)
                 while (whileValue) {
+                    console.log('Зашел')
                     let randomId = Math.floor(1 + Math.random() * (9 + 1 - 1)) + ""
-                    state.map(item =>{
+                    state.map(item => {
                         if (randomId == item.id && item.times == false && item.circle == false) {
                             item.circle = true
                             setCombinationO([...combinationO, item.id])
@@ -144,7 +143,7 @@ const TikTakToe = () => {
         if (e.currentTarget.dataset.opponent == 'desktop') setOpponentDesktop(true)
         setOpponentChoosingDisplay(false)
     }
-    console.log(priorityCircle)
+
     let renderState = state.map(item => {
         return (
             <div className={styles.zone + " " + (winnerIndicator && styles.zoneWiner)} id={item.id}
@@ -157,7 +156,14 @@ const TikTakToe = () => {
     return (
         <div>
             <div className={styles.container}>
+                <div className={styles.priorityInfo_wrapper}>
+                    <div className={styles.priorityInfo}>
+                        <div className={styles.priorityInfo_title}>Ход:</div>
+                        <div className={styles.priorityInfo_icon}>{!opponentChoosingDisplay&& (priorityCircle? circle: times)}</div>
+                    </div>
+                </div>
                 <div className={styles.tikTakToe_wrapper}>
+                    <p className={styles.tikTakToe_tittleOpponent}>{!opponentChoosingDisplay && (opponentDesktop ? <span>{child} vs {desktop}</span> : <span>{child} vs {child}</span>)} </p>
                     <Transition
                         items={!winnerIndicatorTwo}
                         from={{ position: 'absolute', opacity: 0 }}
@@ -202,12 +208,12 @@ const TikTakToe = () => {
                 </div>
             </div>
             <Counter times={times} circle={circle} count={count} />
-            { opponentChoosingDisplay && <div className={styles.choosingOpponent_wrapper}>
+            {opponentChoosingDisplay && <div className={styles.choosingOpponent_wrapper}>
                 <div className={styles.choosingOpponent_container}>
-                    <p>Выберете аппонента :</p>
+                    <p className={styles.choosingOpponent_info}>Выберете оппонента :</p>
                     <div className={styles.choosingOpponent}>
-                        <button onClick={onOpponentChoosing} data-opponent={'child'}>{child} vs {child}</button>
-                        <button onClick={onOpponentChoosing} data-opponent={'desktop'}>{child} vs {desktop}</button>
+                        <button className={styles.choosingOpponent_buttonChild} onClick={onOpponentChoosing} data-opponent={'child'}>{child} vs {child}</button>
+                        <button className={styles.choosingOpponent_buttonDesktop} onClick={onOpponentChoosing} data-opponent={'desktop'}>{child} vs {desktop}</button>
                     </div>
                 </div>
             </div>}
