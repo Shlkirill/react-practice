@@ -20,22 +20,23 @@ const Collaborator = (props) => {
     const onEditRateKeyDown = (e) => {
         if (e.code == 'Enter' || e.code == 'NumpadEnter') setEditModeRate(!editModeRate)
     }
-    const onChangeRate = (e) => {
-        props.editValue(props.id, +e.target.value || '', 'RATE')
-    }
-    const onChangeDays = (e) => {
-        props.editValue(props.id, +e.target.value || '', 'DAYS')
+    const onChangeRate = (targetValue, trigger) => {
+        let value = targetValue.replace(/\D/g, '')
+        if (value.length == 2 && value[0] == 0) value = value.substring(1)
+        if (value == '') value = 0;
+        if (trigger == 'RATE') props.editValue(props.id, value, trigger)
+        if (trigger == 'DAYS') props.editValue(props.id, value, trigger)
     }
     return (
         <tr key={props.id}>
             <td>{props.name}</td>
             <td className={styles.days}>{!editModeDays ?
                 <div>{props.daysWorked} <FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditDays} /></div> :
-                <div><input type='number' min='0' value={props.daysWorked} className={styles.days_input} autoFocus={true} onChange={onChangeDays} onKeyDown={onEditDaysKeyDown} />
+                <div><input type='text' min='0' value={props.daysWorked} className={styles.days_input} autoFocus={true} onChange={(e) => { onChangeRate(e.target.value, 'DAYS') }} onKeyDown={onEditDaysKeyDown} />
                     <FontAwesomeIcon icon={faCheckCircle} className={styles.edit} onClick={onEditDays} /></div>}</td>
             <td className={styles.rate}>{!editModeRate ?
                 <div>{props.rate}<FontAwesomeIcon icon={faPencilAlt} className={styles.edit} onClick={onEditRate} /></div> :
-                <div><input type='number' min='0' value={props.rate} autoFocus={true} className={styles.rate_input} onChange={onChangeRate} onKeyDown={onEditRateKeyDown} />
+                <div><input type='text' min='0' value={props.rate} autoFocus={true} className={styles.rate_input} onChange={(e) => { onChangeRate(e.target.value, 'RATE') }} onKeyDown={onEditRateKeyDown} />
                     <FontAwesomeIcon icon={faCheckCircle} className={styles.edit} onClick={onEditRate} /></div>}</td>
             <td>{props.daysWorked * props.rate}</td>
         </tr>

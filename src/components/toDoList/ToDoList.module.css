@@ -41,7 +41,7 @@
     display: flex;
     justify-content: space-around;
   }
-.inputForm_container {
+  .inputForm_container {
     position: relative;
     width: 100%;
     margin-left: 10px;
@@ -134,4 +134,40 @@
 }
 .editWindow_hide {
   display: none;
+}
+
+@media screen and (max-width: 530px) {
+  .wrapper {
+    padding: 15px;
+  }
+  .todolist {
+    max-width: 300px;
+  }
+  .filter {
+    flex-direction: column;
+    text-align: center;
+    font-size: 14px;
+  }
+  .filter p {
+    width: 55%;
+    margin: 2px auto;
+    border-bottom: 2px solid rgba(0, 0, 0, 0)
+  }
+  .tittle {
+    margin-bottom: 7px;
+    font-size: 16px;
+  }
+  .info {
+    text-align: center;
+  }
+  .info_undone, .info_done, .info_undone span, .info_done span {
+    font-size: 14px;
+  }
+  .info_undone, .info_done {
+    margin: 5px 0;
+  }
+  .inputForm {
+    font-size: 14px;
+    height: 20px;
+  }
 }

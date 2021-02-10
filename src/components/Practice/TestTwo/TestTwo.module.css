@@ -3,8 +3,11 @@
     padding: 20px 0;
 }
 .container {
-    width: 600px;
     margin: 0 auto;
+}
+.button_container {
+	max-width: 600px;
+	margin: 0 auto;
 }
 .button {
 	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -22,6 +25,7 @@
 	margin-left: 20px;
 	margin-top: 25px;
     text-align: right;
+	margin-right: 20px;
 }
 .button:hover {
 	background:linear-gradient(to bottom, #218d00 5%, #35f02f 100%);
@@ -70,10 +74,11 @@
 	color:#ffffff;
 	font-family:Arial;
 	font-weight:bold;
-	padding:6px 24px;
+	padding:6px 12px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #528ecc;
 	outline: none;
+	margin: 0 12px;
 }
 .buttonNavigation:hover {
 	background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);

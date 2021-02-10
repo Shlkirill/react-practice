@@ -3,8 +3,12 @@
     padding: 20px 0;
 }
 .container {
-    width: 600px;
     margin: 0 auto;
+	padding: 0 20px;
+}
+.button_container {
+	max-width: 600px;
+	margin: 0 auto;
 }
 .button {
 	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -19,8 +23,6 @@
 	font-weight:bold;
 	padding:6px 10px;
 	text-decoration:none;
-    margin-left: 20px;
-    text-align: right;
 }
 .button:hover {
 	background:linear-gradient(to bottom, #218d00 5%, #35f02f 100%);

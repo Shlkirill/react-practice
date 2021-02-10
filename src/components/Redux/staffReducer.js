@@ -23,7 +23,6 @@ const staffReducer = (state = initialState, action) => {
                 }
                 return item
             })
-            console.log(arr)
             stateCopy = {
                 ...state,
                 staffList: [...state.staffList],
