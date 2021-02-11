@@ -38,24 +38,19 @@ const TikTakToe = () => {
     let [count, setCount] = useState(countValue);
     let [opponentChoosingDisplay, setOpponentChoosingDisplay] = useState(true)
     let [opponentDesktop, setOpponentDesktop] = useState(false)
-
+        console.log('AI Brunch')
     useEffect(() => {
-        if (combinationX.length >=3) victoryCheck()
+        if ( combinationX.length >= 3) victoryCheck()
     }, [combinationX])
 
     useEffect(() => {
-        if (combinationO.length >=3) victoryCheck()
+        if ( combinationO.length >= 3) victoryCheck()
     }, [combinationO])
 
-    // useEffect(() => {
-    //     if (priorityCircle) onClickZoneVSDesktop()
-    // },[priorityCircle])
-
     const courseBot = () => {
-        if (priorityCircle) {
+        // if (priorityCircle) {
             let whileValue = true;
             while (whileValue) {
-                console.log('1')
                 let randomId = Math.floor(1 + Math.random() * (9 + 1 - 1)) + ""
                 state.map(item => {
                     if (randomId == item.id && item.times == false && item.circle == false) {
@@ -68,9 +63,7 @@ const TikTakToe = () => {
                     if (combinationO.length + combinationX.length == 8) whileValue = false
                 })
             }
-        }
     }
-
     let clearFild = () => {
         setTimeout(() => {
             setWinnerIndicatorTwo(true)
@@ -107,6 +100,7 @@ const TikTakToe = () => {
                     setCount({ ...count, circle: count.circle + 1 })
                 finish = true
             }
+            console.log(winnerIndicator)
             winnerX = 0;
             winnerO = 0;
         })
@@ -140,9 +134,9 @@ const TikTakToe = () => {
     }
     let onClickZoneVSDesktop = (e) => {
         if (winnerIndicator) return
-        if (priorityCircle) {
-            courseBot()
-        } else {
+        // if (priorityCircle) {
+        //     courseBot()
+        // } else {
             state.map(item => {
                 if (e.target.id == item.id && item.times == false && item.circle == false) {
                     item.times = true
@@ -152,7 +146,6 @@ const TikTakToe = () => {
                 return item
             })
         }
-    }
 
 const onOpponentChoosing = (e) => {
     if (e.currentTarget.dataset.opponent == 'desktop') setOpponentDesktop(true)
