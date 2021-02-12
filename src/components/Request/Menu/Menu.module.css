@@ -1,0 +1,11 @@
+.menu_list {
+    display: flex;
+    justify-content: center;
+}
+.menu_item {
+    margin-right: 15px;
+}
+.menu_item:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}

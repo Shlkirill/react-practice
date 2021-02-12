@@ -13,9 +13,10 @@ const Header = () => {
             <FontAwesomeIcon className={styles.bars} icon={faBars} onClick={()=>{setminiMenu(!miniMenu)}}/>
                 <ul className={styles.menu + ' ' + (miniMenu && styles.menuHide)}>
                     <li><FontAwesomeIcon className={styles.times} icon={faTimes} onClick={()=>{setminiMenu(!miniMenu)}}/></li>
-                    <li><NavLink to='/toDoList' activeClassName={styles.active} className={styles.link}>To Do List</NavLink></li>
-                    <li><NavLink to='/practice' activeClassName={styles.active} className={styles.link}>Practice</NavLink> </li>
+                    <li><NavLink to='/toDoList' activeClassName={styles.active} className={styles.link}>Лист задач</NavLink></li>
                     <li><NavLink to='/tic_tac_toe' activeClassName={styles.active} className={styles.link}>Крестики <br/>нолики</NavLink> </li>
+                    <li><NavLink to='/request_axios' activeClassName={styles.active} className={styles.link}>Практика <br/>axios</NavLink> </li>
+                    <li><NavLink to='/practice' activeClassName={styles.active} className={styles.link}>Разное</NavLink> </li>
                 </ul>
             </div>
         </div>

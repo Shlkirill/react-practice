@@ -40,16 +40,12 @@ const TikTakToe = () => {
     let [opponentDesktop, setOpponentDesktop] = useState(false)
 
     useEffect(() => {
-        if (combinationX.length >=3) victoryCheck()
+        if (combinationX.length >= 3) victoryCheck()
     }, [combinationX])
 
     useEffect(() => {
-        if (combinationO.length >=3) victoryCheck()
+        if (combinationO.length >= 3) victoryCheck()
     }, [combinationO])
-
-    // useEffect(() => {
-    //     if (priorityCircle) onClickZoneVSDesktop()
-    // },[priorityCircle])
 
     const courseBot = () => {
         if (priorityCircle) {
@@ -87,7 +83,6 @@ const TikTakToe = () => {
             }, 3000);
         }, 3000);
     }
-
     const victoryCheck = () => {
         let finish = false
 
@@ -110,9 +105,6 @@ const TikTakToe = () => {
             winnerX = 0;
             winnerO = 0;
         })
-        // if (priorityCircle && !finish) {
-        //     onClickZoneVSDesktop()
-        // }
         if ((combinationO.length + combinationX.length) == 9 && !finish) {
             clearFild()
             setWinnerIndicator(true)
@@ -154,90 +146,90 @@ const TikTakToe = () => {
         }
     }
 
-const onOpponentChoosing = (e) => {
-    if (e.currentTarget.dataset.opponent == 'desktop') setOpponentDesktop(true)
-    setOpponentChoosingDisplay(false)
-}
+    const onOpponentChoosing = (e) => {
+        if (e.currentTarget.dataset.opponent == 'desktop') setOpponentDesktop(true)
+        setOpponentChoosingDisplay(false)
+    }
 
-let renderState = state.map(item => {
-    return (
-        <div className={styles.zone + " " + (winnerIndicator && styles.zoneWiner)} id={item.id}
-            key={item.id} onClick={opponentDesktop ? onClickZoneVSDesktop : onClickZone}>
-            {item.times && times}
-            {item.circle && circle}
-        </div>
-    )
-})
-return (
-    <div>
-        <div className={styles.container}>
-            <div className={styles.priorityInfo_wrapper}>
-                <div className={styles.priorityInfo}>
-                    {!winnerIndicator ?
-                        !opponentChoosingDisplay ? <div className={styles.priorityInfo_unWinner}>
-                            <div className={styles.priorityInfo_title}>Ход:</div>
-                            <div className={styles.priorityInfo_icon}>{priorityCircle ? circle : times}</div>
-                        </div> : <div className={styles.priorityInfo_titleVS}> ? vs ?</div>
-                        : smille}
-                </div>
+    let renderState = state.map(item => {
+        return (
+            <div className={styles.zone + " " + (winnerIndicator && styles.zoneWiner)} id={item.id}
+                key={item.id} onClick={opponentDesktop ? onClickZoneVSDesktop : onClickZone}>
+                {item.times && times}
+                {item.circle && circle}
             </div>
-            <div className={styles.tikTakToe_wrapper}>
-                <p className={styles.tikTakToe_tittleOpponent}>{!opponentChoosingDisplay && (opponentDesktop ? <span>{child} vs {desktop}</span> : <span>{child} vs {child}</span>)} </p>
-                <Transition
-                    items={!winnerIndicatorTwo}
-                    from={{ position: 'absolute', opacity: 0 }}
-                    enter={{ opacity: 1 }}
-                    leave={{ opacity: 0 }}>
-                    {toggle =>
-                        toggle
-                            ? props => <div style={props} className={styles.tikTakToe}>
-                                {renderState}
-                                <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
-                                    <div className={styles.winLineHorizontal_wrapper}>
-                                        <div className={styles.lineHorizontal + " " + (winnerID == 0 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                        <div className={styles.lineHorizontal + " " + (winnerID == 1 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                        <div className={styles.lineHorizontal + " " + (winnerID == 2 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                    </div>
-                                    <div className={styles.winLineVertical_wrapper}>
-                                        <div className={styles.lineVertical + " " + (winnerID == 3 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                        <div className={styles.lineVertical + " " + (winnerID == 4 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                        <div className={styles.lineVertical + " " + (winnerID == 5 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                    </div>
-                                    <div className={styles.winLineDiagonal_wrapper}>
-                                        <div className={styles.lineDiagonal_left + " " + (winnerID == 6 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
-                                        <div className={styles.lineDiagonal_right + " " + (winnerID == 7 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+        )
+    })
+    return (
+        <div>
+            <div className={styles.container}>
+                <div className={styles.priorityInfo_wrapper}>
+                    <div className={styles.priorityInfo}>
+                        {!winnerIndicator ?
+                            !opponentChoosingDisplay ? <div className={styles.priorityInfo_unWinner}>
+                                <div className={styles.priorityInfo_title}>Ход:</div>
+                                <div className={styles.priorityInfo_icon}>{priorityCircle ? circle : times}</div>
+                            </div> : <div className={styles.priorityInfo_titleVS}> ? vs ?</div>
+                            : smille}
+                    </div>
+                </div>
+                <div className={styles.tikTakToe_wrapper}>
+                    <p className={styles.tikTakToe_tittleOpponent}>{!opponentChoosingDisplay && (opponentDesktop ? <span>{child} vs {desktop}</span> : <span>{child} vs {child}</span>)} </p>
+                    <Transition
+                        items={!winnerIndicatorTwo}
+                        from={{ position: 'absolute', opacity: 0 }}
+                        enter={{ opacity: 1 }}
+                        leave={{ opacity: 0 }}>
+                        {toggle =>
+                            toggle
+                                ? props => <div style={props} className={styles.tikTakToe}>
+                                    {renderState}
+                                    <div className={styles.allLineWrapper + " " + (winnerID == null && styles.allLineHide)}>
+                                        <div className={styles.winLineHorizontal_wrapper}>
+                                            <div className={styles.lineHorizontal + " " + (winnerID == 0 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                            <div className={styles.lineHorizontal + " " + (winnerID == 1 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                            <div className={styles.lineHorizontal + " " + (winnerID == 2 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        </div>
+                                        <div className={styles.winLineVertical_wrapper}>
+                                            <div className={styles.lineVertical + " " + (winnerID == 3 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                            <div className={styles.lineVertical + " " + (winnerID == 4 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                            <div className={styles.lineVertical + " " + (winnerID == 5 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        </div>
+                                        <div className={styles.winLineDiagonal_wrapper}>
+                                            <div className={styles.lineDiagonal_left + " " + (winnerID == 6 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                            <div className={styles.lineDiagonal_right + " " + (winnerID == 7 && (priorityCircle ? styles.lineHideBlue : styles.lineHideYellow))}></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            : props => <div style={props} className={styles.winner_container}>
-                                {!drawIndicator ?
-                                    <div>
-                                        <div className={styles.winner_icon}>{(winnerForm == 'times' && times) || (winnerForm == 'circle' && circle)}</div>
-                                        <p className={(winnerForm == 'times' && styles.winner_textTimes) || (winnerForm == 'circle' && styles.winner_textCircle)}>{winnerForm !== '' && "ПОБЕДИТЕЛЬ!"}</p>
-                                    </div> :
-                                    <div>
-                                        <div className={styles.draw_icon} >
-                                            {times} {circle}
+                                : props => <div style={props} className={styles.winner_container}>
+                                    {!drawIndicator ?
+                                        <div>
+                                            <div className={styles.winner_icon}>{(winnerForm == 'times' && times) || (winnerForm == 'circle' && circle)}</div>
+                                            <p className={(winnerForm == 'times' && styles.winner_textTimes) || (winnerForm == 'circle' && styles.winner_textCircle)}>{winnerForm !== '' && "ПОБЕДИТЕЛЬ!"}</p>
+                                        </div> :
+                                        <div>
+                                            <div className={styles.draw_icon} >
+                                                {times} {circle}
+                                            </div>
+                                            <p className={styles.draw_text}>НИЧЬЯ!</p>
                                         </div>
-                                        <p className={styles.draw_text}>НИЧЬЯ!</p>
-                                    </div>
-                                }
-                            </div>}
-                </Transition>
-            </div>
-        </div>
-        <Counter times={times} circle={circle} count={count} />
-        {opponentChoosingDisplay && <div className={styles.choosingOpponent_wrapper}>
-            <div className={styles.choosingOpponent_container}>
-                <p className={styles.choosingOpponent_info}>Выберете оппонента :</p>
-                <div className={styles.choosingOpponent}>
-                    <button className={styles.choosingOpponent_buttonChild} onClick={onOpponentChoosing} data-opponent={'child'}>{child} vs {child}</button>
-                    <button className={styles.choosingOpponent_buttonDesktop} onClick={onOpponentChoosing} data-opponent={'desktop'}>{child} vs {desktop}</button>
+                                    }
+                                </div>}
+                    </Transition>
                 </div>
             </div>
-        </div>}
-    </div>
-)
+            <Counter times={times} circle={circle} count={count} />
+            {opponentChoosingDisplay && <div className={styles.choosingOpponent_wrapper}>
+                <div className={styles.choosingOpponent_container}>
+                    <p className={styles.choosingOpponent_info}>Выберете оппонента :</p>
+                    <div className={styles.choosingOpponent}>
+                        <button className={styles.choosingOpponent_buttonChild} onClick={onOpponentChoosing} data-opponent={'child'}>{child} vs {child}</button>
+                        <button className={styles.choosingOpponent_buttonDesktop} onClick={onOpponentChoosing} data-opponent={'desktop'}>{child} vs {desktop}</button>
+                    </div>
+                </div>
+            </div>}
+        </div>
+    )
 }
 
 export default TikTakToe
