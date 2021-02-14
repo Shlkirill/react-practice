@@ -3,6 +3,10 @@
     width: 320px;
     height: 250px;
 }
+.blockInfoBigCard {
+    width: 520px;
+    height: 250px;
+}
 .blockInfo_tittle {
     margin: 0px;
     padding-bottom: 10px;

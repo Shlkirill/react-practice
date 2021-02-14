@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './BlockInfo.module.css'
 
-const BlockInfo = ({ id, postBody, postTitle, onViewPost }) => {
+const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
     let [backgroundColor, setBackgroundColor] = useState(0)
 
     const onSetBackgroundColor = () => {
@@ -13,7 +13,8 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost }) => {
         <div className={styles.blockInfo
             + ' ' + (backgroundColor == 1 && styles.backgroundRed)
             + ' ' + (backgroundColor == 2 && styles.backgroundGreen)
-            + ' ' + (backgroundColor == 3 && styles.backgroundBlue)}>
+            + ' ' + (backgroundColor == 3 && styles.backgroundBlue)
+            + ' ' + (cardSizeBig && styles.blockInfoBigCard)}>
             <div className={styles.blockInfo_container}>
                 <div className={styles.blockInfo_wrapper}>
                     <h3 className={styles.blockInfo_tittle}>{postTitle}</h3>

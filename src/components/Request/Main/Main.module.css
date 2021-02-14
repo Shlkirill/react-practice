@@ -8,6 +8,9 @@
     grid-gap: 10px;
     animation: animated-show-post 1s;
 }
+.main_containerBigCard {
+	grid-template-columns: auto auto;
+}
 .main_showMoreContainer {
     margin-top: 20px;
     text-align: center;
