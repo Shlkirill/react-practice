@@ -22,3 +22,6 @@
     color: rgb(143, 143, 143);
     opacity: 0.7;
 }
+.active {
+    color: rgb(197, 184, 0);
+}

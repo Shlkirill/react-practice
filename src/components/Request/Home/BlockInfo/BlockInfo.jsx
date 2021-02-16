@@ -1,3 +1,5 @@
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import styles from './BlockInfo.module.css'
 
@@ -6,8 +8,13 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
 
     const onSetBackgroundColor = () => {
         setBackgroundColor(backgroundColor = backgroundColor + 1)
-        if (backgroundColor == 4)  setBackgroundColor(0)
+        if (backgroundColor == 4) setBackgroundColor(0)
     }
+
+    const editPost = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit}
+        onClick={() => onViewPost(postTitle, postBody, 'EDIT', 'Редактирование')} />
+    const deletePost = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete}
+        onClick={() => onViewPost(postTitle, postBody, 'DELETE', 'Вы уверены что хотите удалить пост?')} />
 
     return (
         <div className={styles.blockInfo
@@ -17,11 +24,17 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
             + ' ' + (cardSizeBig && styles.blockInfoBigCard)}>
             <div className={styles.blockInfo_container}>
                 <div className={styles.blockInfo_wrapper}>
-                    <h3 className={styles.blockInfo_tittle}>{postTitle}</h3>
+                    <div className={styles.blockInfo_tittleWrapper}>
+                        <h3 className={styles.blockInfo_tittle}>{postTitle}</h3>
+                        <div className={styles.blockInfo_tittleChangeIcon}>
+                            {editPost}
+                            {deletePost}
+                        </div>
+                    </div>
                     <p className={styles.blockInfo_info}>{postBody}</p>
                 </div>
                 <div className={styles.blockInfo_navigation}>
-                    <button onClick={() => onViewPost(postTitle, postBody)}>Больше</button>
+                    <button onClick={() => onViewPost(postTitle, postBody, 'VIEW')}>Больше</button>
                     <button onClick={onSetBackgroundColor}>Цвет</button>
                 </div>
             </div>

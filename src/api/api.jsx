@@ -9,3 +9,7 @@ export const apiGetUsers = async () => {
     let response = await instance.get()
     return response.data
 };
+export const apiDeletPost = async () => {
+    let response = await instance.get()
+    return response.data
+};

@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect, Route} from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { getUsersTC } from '../Redux/requestReducer'
-import Main from './Main/Main'
+import Home from './Home/Home'
 import Menu from './Menu/Menu'
 
 const RequestContainer = (props) => {
@@ -13,7 +14,8 @@ const RequestContainer = (props) => {
     return (
         <div>
             <Menu />
-            <Main postsList={props.postsList} />
+            <Route path='/request_axios/home'><Home postsList={props.postsList} /></Route>
+            <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
         </div>
     )
 }

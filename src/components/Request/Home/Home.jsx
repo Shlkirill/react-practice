@@ -1,27 +1,32 @@
 import React from 'react'
 import { useTransition, animated } from 'react-spring'
-import { useEffect, useState } from 'react/cjs/react.development'
+import { useState } from 'react/cjs/react.development'
+import ModalWindow from '../ModalWindow/ModalWindow'
 import BlockInfo from './BlockInfo/BlockInfo'
-import styles from './Main.module.css'
+import styles from './Home.module.css'
 
-const Main = ({ postsList }) => {
+const Home = ({ postsList }) => {
     let [cardSizeBig, setCardSizeBig] = useState(false)
     let [amountPosts, setAmountPosts] = useState(3)
     let [viewPost, setViewPost] = useState({
         title: '',
         body: '',
+        trigger: '',
+        messages: '',
         show: false
     })
 
     const onShowMore = () => {
         setAmountPosts(amountPosts + (cardSizeBig ? 4 : 3))
     }
-    const onViewPost = (title, body) => {
+    const onViewPost = (title, body, trigger, messages) => {
 
         setViewPost({
             ...viewPost,
             title,
             body,
+            trigger,
+            messages,
             show: true
         })
     }
@@ -66,17 +71,9 @@ const Main = ({ postsList }) => {
             <div className={a[a.length - 1] == undefined ? styles.main_showMoreContainer : styles.hide}>
                 <button className={styles.main_showMore} onClick={onShowMore}>Show more</button>
             </div>
-            <div className={viewPost.show ? styles.viewModal : styles.hide}>
-                <div className={styles.viewModal_wrapper}>
-                    <h3>{viewPost.title}</h3>
-                    <p>{viewPost.body}</p>
-                    <div className={styles.viewModal_navigation}>
-                        <button className={styles.viewModal_button} onClick={onCloseViewPost}>Close</button>
-                    </div>
-                </div>
-            </div>
+            <ModalWindow viewPost={viewPost} onCloseViewPost={onCloseViewPost} />
         </div>
     )
 }
 
-export default Main
+export default Home
