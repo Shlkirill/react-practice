@@ -3,26 +3,31 @@
     width: 320px;
     height: 250px;
 }
+
 .blockInfoBigCard {
     width: 520px;
     height: 250px;
 }
+
 .blockInfo_tittle {
     margin: 0px;
     padding-bottom: 10px;
     text-align: left;
     height: 40%;
 }
+
 .blockInfo_container {
     position: relative;
     height: inherit;
     padding: 10px;
     box-sizing: border-box;
 }
+
 .blockInfo_wrapper {
     height: 80%
 }
-.blockInfo_info{
+
+.blockInfo_info {
     overflow: hidden;
     position: relative;
     margin: 0px;
@@ -51,42 +56,56 @@
 .blockInfo_navigation button {
     margin-left: 10px;
 }
+
 .blockInfo_navigation button {
-	box-shadow: 1px 4px 10px 0px #828282;
-	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-	background-color:#f9f9f9;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#666666;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffffff;
+    box-shadow: 1px 4px 10px 0px #828282;
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
 }
+
 .blockInfo_navigation button:hover {
-	background:linear-gradient(to bottom, #ffffff 5%, #a5a5a5 100%);
-	background-color:#e9e9e9;
+    background: linear-gradient(to bottom, #ffffff 5%, #a5a5a5 100%);
+    background-color: #e9e9e9;
 }
 
 .backgroundRed {
-    background-color:#fa6464;
+    background-color: #fa6464;
 }
+
 .backgroundRed .blockInfo_info:after {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fa6464 100%);
 }
+
 .backgroundGreen {
-    background-color:#47ffb2;
+    background-color: #47ffb2;
 }
+
 .backgroundGreen .blockInfo_info:after {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #47ffb2 100%);
 }
+
 .backgroundBlue {
-    background-color:#554afa;
+    background-color: #554afa;
 }
+
 .backgroundBlue .blockInfo_info:after {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #554afa 100%);
+}
+
+@media screen and (max-width: 670px) {
+    .blockInfoBigCard {
+        width: 320px;
+        height: 250px;
+    }
 }
