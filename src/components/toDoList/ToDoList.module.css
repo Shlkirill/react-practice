@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  padding-top: 20px;
 }
 .wrapper {
   background-image: url('../../img/background.jpg');

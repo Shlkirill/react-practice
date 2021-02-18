@@ -1,16 +1,19 @@
 import React from 'react'
 import { useTransition, animated } from 'react-spring'
 import { useState } from 'react/cjs/react.development'
+import Loader from '../../common/Loader'
 import ModalWindow from '../ModalWindow/ModalWindow'
 import BlockInfo from './BlockInfo/BlockInfo'
 import styles from './Home.module.css'
 
-const Home = ({ postsList }) => {
+const Home = ({ postsList, deletPost, editPost }) => {
+
     let [cardSizeBig, setCardSizeBig] = useState(false)
     let [amountPosts, setAmountPosts] = useState(3)
     let [viewPost, setViewPost] = useState({
         title: '',
         body: '',
+        postId: null,
         trigger: '',
         messages: '',
         show: false
@@ -19,12 +22,13 @@ const Home = ({ postsList }) => {
     const onShowMore = () => {
         setAmountPosts(amountPosts + (cardSizeBig ? 4 : 3))
     }
-    const onViewPost = (title, body, trigger, messages) => {
+    const onViewPost = (title, body, postId, trigger, messages) => {
 
         setViewPost({
             ...viewPost,
             title,
             body,
+            postId,
             trigger,
             messages,
             show: true
@@ -49,7 +53,6 @@ const Home = ({ postsList }) => {
     })
 
     let a = transitions.map(({ item, props, key }) => {
-
         if (item.id <= amountPosts + cardSizeBig && 1) return <animated.div >
             <BlockInfo key={key} style={props} id={item.id} postBody={item.body}
                 postTitle={item.title} onViewPost={onViewPost} cardSizeBig={cardSizeBig} />
@@ -71,7 +74,7 @@ const Home = ({ postsList }) => {
             <div className={a[a.length - 1] == undefined ? styles.main_showMoreContainer : styles.hide}>
                 <button className={styles.main_showMore} onClick={onShowMore}>Show more</button>
             </div>
-            <ModalWindow viewPost={viewPost} onCloseViewPost={onCloseViewPost} />
+            {viewPost.show && <ModalWindow viewPost={viewPost} onCloseViewPost={onCloseViewPost} deletPost={deletPost} editPost={editPost} />}
         </div>
     )
 }

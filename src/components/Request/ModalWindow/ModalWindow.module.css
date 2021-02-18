@@ -23,6 +23,7 @@
 	padding:6px 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
+	margin: 10px 0 0 10px;
 }
 .viewModal_button:hover {
 	background:linear-gradient(to bottom, #ffffff 5%, #a5a5a5 100%);
@@ -51,4 +52,23 @@
 .iconDelete:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+.editContainer p {
+	margin: 10px 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.editTittleTextarea, .editBodyTextarea  {
+	width: 100%;
+	resize: none;
+	outline: none;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.editTittleTextarea {
+	height: 60px;
+	font-weight: bold;
+}
+.editBodyTextarea  {
+	height: 110px;
 }

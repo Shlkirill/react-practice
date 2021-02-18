@@ -1,5 +1,6 @@
 .container {
     position: relative; 
+    padding-top: 20px;
 }
 .tikTakToe_wrapper, .priorityInfo_wrapper {
     position: relative;

@@ -12,9 +12,9 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
     }
 
     const editPost = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit}
-        onClick={() => onViewPost(postTitle, postBody, 'EDIT', 'Редактирование')} />
+        onClick={() => onViewPost(postTitle, postBody, id, 'EDIT', 'Editing a post')} />
     const deletePost = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete}
-        onClick={() => onViewPost(postTitle, postBody, 'DELETE', 'Вы уверены что хотите удалить пост?')} />
+        onClick={() => onViewPost(postTitle, postBody, id, 'DELETE', 'Are you sure you want to delete this post?')} />
 
     return (
         <div className={styles.blockInfo
@@ -34,8 +34,8 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
                     <p className={styles.blockInfo_info}>{postBody}</p>
                 </div>
                 <div className={styles.blockInfo_navigation}>
-                    <button onClick={() => onViewPost(postTitle, postBody, 'VIEW')}>Больше</button>
-                    <button onClick={onSetBackgroundColor}>Цвет</button>
+                    <button onClick={() => onViewPost(postTitle, postBody, id, 'VIEW')}>More...</button>
+                    <button onClick={onSetBackgroundColor}>Colors</button>
                 </div>
             </div>
         </div>
