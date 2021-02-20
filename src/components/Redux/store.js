@@ -6,6 +6,7 @@ import testReducer from './testReducer';
 import testTwoReducer from './testTwoReducer';
 import thunkMiddleware from 'redux-thunk';
 import requestReducer from './requestReducer';
+import usersReducer from './usersReducer';
 
 let rootReducer = combineReducers({
     app: appReducer,
@@ -13,6 +14,7 @@ let rootReducer = combineReducers({
     test: testReducer,
     testTwo: testTwoReducer,
     request: requestReducer,
+    users: usersReducer,
     form: formReducer,
 });
 
