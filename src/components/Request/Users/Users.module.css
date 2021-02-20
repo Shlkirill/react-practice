@@ -4,7 +4,7 @@
     box-sizing: border-box;
     margin: 0 auto;
 }
-.wrapperUserList {
+.userList {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
