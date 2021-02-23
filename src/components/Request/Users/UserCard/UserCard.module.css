@@ -29,6 +29,7 @@ h3, h4, p {
 .topInfo {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .topInfo_main {
@@ -82,4 +83,19 @@ h3, h4, p {
     width: 2px;
     height: 70px;
     margin: 0 10px;
+}
+.editInfo {
+    position: absolute;
+    right: -7px;
+    top: -5px;
+}
+.editInfo button{
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: rgb(88, 88, 88);
+}
+.editInfo button:hover {
+    cursor: pointer;
+    color: rgb(0, 118, 228);
 }

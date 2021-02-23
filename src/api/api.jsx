@@ -22,8 +22,12 @@ export const apiEditPost = async (idPost, postTittle, postBody) => {
     return response
 };
 
-
 export const apiGetUsers = async () => {
     let response = await instance.get('/users')
+    return response.data
+};
+
+export const apiGetPhotos = async () => {
+    let response = await instance.get('/photo')
     return response.data
 };

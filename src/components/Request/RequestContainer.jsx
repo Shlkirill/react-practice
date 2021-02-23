@@ -8,7 +8,7 @@ import Home from './Home/Home'
 import Menu from './Menu/Menu'
 import Loader from '../common/Loader'
 import Users from './Users/Users'
-import { getUsersTC } from '../Redux/usersReducer'
+import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
 
 const RequestContainer = (props) => {
     useEffect(() => {
@@ -25,7 +25,7 @@ const RequestContainer = (props) => {
             <Route path='/request_axios/home'><Home postsList={props.postsList} deletPost={props.deletPost}
                 editPost={props.editPost} /></Route>
             <Route path='/request_axios/users'>
-                <Users users={props.users}/>
+                <Users users={props.users} editUsers={props.editUsers}/>
             </Route>
             <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
         </div>
@@ -43,7 +43,8 @@ let mapDispatchToProps = {
     getPosts: getPostsTC,
     deletPost: deletePostTC,
     editPost: editPostTC,
-    getUsers: getUsersTC
+    getUsers: getUsersTC,
+    editUsers: editUsersTC
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestContainer)

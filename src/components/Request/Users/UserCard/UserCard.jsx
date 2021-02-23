@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './UserCard.module.css'
 import avatarNone from '../../../../img/users/userNoneAvatar.png'
 import companyLogo from '../../../../img/users/logo-business.png'
 import addressLogo from '../../../../img/users/addressLogo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import ModalWindow2 from '../../ModalWindow2/ModalWindow2'
+
 
 const UserCard = (props) => {
+    let [editMode, setEditMode] = useState(false)
+    const editInfo = <FontAwesomeIcon icon={faUserEdit} className={styles.iconEdit} />
+    const onEditMode = () => {
+        setEditMode(true)
+    }
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -19,6 +28,9 @@ const UserCard = (props) => {
                             <p className={styles.email}><span>Email: </span> {props.email}</p>
                             <p className={styles.phone}><span>Phone: </span> {props.phone}</p>
                             <p className={styles.website}> <span>Site: </span> {props.website}</p>
+                        </div>
+                        <div className={styles.editInfo}>
+                            <button onClick={onEditMode}> {editInfo} </button>
                         </div>
                     </div>
                     <div className={styles.dividingStrip}></div>
@@ -49,6 +61,8 @@ const UserCard = (props) => {
                     </div>
                 </div>
             </div>
+            {editMode && <ModalWindow2 name={props.name} userName={props.userName} email={props.email}
+                                        phone={props.phone} site={props.website} editUsers={props.editUsers}/>}
         </div>
     )
 }
