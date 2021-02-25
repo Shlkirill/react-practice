@@ -1,4 +1,46 @@
+.wrapper {
+    position: relative;
+}
+
+.albumCard {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    border: 1px solid rgb(128, 128, 128);
+    padding: 17px;
+    -webkit-box-shadow: 1px 9px 21px -5px rgba(97, 97, 97, 0.6);
+    -moz-box-shadow: 1px 9px 21px -5px rgba(97, 97, 97, 0.6);
+    box-shadow: 1px 9px 21px -5px rgba(97, 97, 97, 0.6);
+    transition: all 500ms;
+    min-height: 300px;
+}
+.albumCard:hover {
+    -webkit-box-shadow: 1px 9px 21px -5px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 1px 9px 21px -5px rgba(0, 0, 0, 0.9);
+    box-shadow: 1px 9px 21px -5px rgba(0, 0, 0, 0.9);
+}
 
 .preview {
     width: 150px;
+    display: block;
+    transition: all 500ms;
+    z-index: 1;
+}
+
+.preview:hover {
+    transform: scale(1.1);
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 2px 27px 13px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 2px 27px 13px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 2px 27px 13px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.description {
+    position: absolute;
+    left: 50%;
+    bottom: -9px;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
 }
