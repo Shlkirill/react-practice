@@ -9,11 +9,14 @@ import Menu from './Menu/Menu'
 import Loader from '../common/Loader'
 import Users from './Users/Users'
 import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
+import Photos from './Photos/Photos'
+import { getPhotosTC } from '../Redux/photosReducer'
 
 const RequestContainer = (props) => {
     useEffect(() => {
         props.getPosts();
         props.getUsers();
+        props.getPhotos();
     }, [])
 
     return (
@@ -22,10 +25,15 @@ const RequestContainer = (props) => {
                 <Loader />
             </div>}
             <Menu />
-            <Route path='/request_axios/home'><Home postsList={props.postsList} deletPost={props.deletPost}
-                editPost={props.editPost} /></Route>
+            <Route path='/request_axios/home'>
+                <Home postsList={props.postsList} deletPost={props.deletPost}
+                    editPost={props.editPost} />
+            </Route>
             <Route path='/request_axios/users'>
-                <Users users={props.users} editUsers={props.editUsers}/>
+                <Users users={props.users} editUsers={props.editUsers} />
+            </Route>
+            <Route path='/request_axios/photos'>
+                <Photos photosList={props.photosList}/>
             </Route>
             <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
         </div>
@@ -36,7 +44,8 @@ let mapStateToProps = (state) => {
     return {
         postsList: state.request.postsList,
         loadingProcess: state.request.loadingProcess,
-        users: state.users.usersList
+        users: state.users.usersList,
+        photosList: state.photos.photosList
     }
 }
 let mapDispatchToProps = {
@@ -44,7 +53,8 @@ let mapDispatchToProps = {
     deletPost: deletePostTC,
     editPost: editPostTC,
     getUsers: getUsersTC,
-    editUsers: editUsersTC
+    editUsers: editUsersTC,
+    getPhotos: getPhotosTC
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestContainer)

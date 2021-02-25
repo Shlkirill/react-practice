@@ -1,3 +1,5 @@
+import { apiGetPhotos } from "../../api/api";
+
 const GET_PHOTOS = 'GET_PHOTOS';
 
 export const getPhotosAC = (photos) => ({ type: GET_PHOTOS, photos });
@@ -19,3 +21,14 @@ const photosReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const getPhotosTC = () => {
+    return (
+      async (dispatch) => {
+        let response = await apiGetPhotos();
+        dispatch(getPhotosAC(response));
+      }
+    )
+  }
+
+export default photosReducer

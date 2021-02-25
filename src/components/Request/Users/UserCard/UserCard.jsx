@@ -62,7 +62,8 @@ const UserCard = (props) => {
                 </div>
             </div>
             {editMode && <ModalWindow2 name={props.name} userName={props.userName} email={props.email}
-                                        phone={props.phone} site={props.website} editUsers={props.editUsers}/>}
+                                        phone={props.phone} site={props.website} editUsers={props.editUsers}
+                                        id={props.id} setEditMode={setEditMode}/>}
         </div>
     )
 }

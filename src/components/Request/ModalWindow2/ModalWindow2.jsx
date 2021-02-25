@@ -1,16 +1,22 @@
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import styles from './ModalWindow2.module.css'
 
 const ModalWindow2 = (props) => {
+
     let infoUserObj = {
+        id: props.id,
         name: props.name,
-        userName: props.userName,
+        username: props.userName,
         email: props.email,
-        site: props.site,
+        website: props.site,
         phone: props.phone,
     }
 
     let [editInfoUser, setEditInfoUser] = useState(infoUserObj)
+
+    const deletePost = <FontAwesomeIcon icon={faTimes} className={styles.iconDelete} onClick={()=> {props.setEditMode(false)}} />
 
     let onEditInfoUser = (vaule, id) => {
         let copyEditInfoUser;
@@ -18,14 +24,14 @@ const ModalWindow2 = (props) => {
             case '1':
                 copyEditInfoUser = {
                     ...editInfoUser,
-                    name: vaule
+                    username: vaule
                 }
                 setEditInfoUser(copyEditInfoUser)
                 return copyEditInfoUser;
             case '2':
                 copyEditInfoUser = {
                     ...editInfoUser,
-                    userName: vaule
+                    name: vaule
                 }
                 setEditInfoUser(copyEditInfoUser)
                 return copyEditInfoUser;
@@ -39,7 +45,7 @@ const ModalWindow2 = (props) => {
             case '4':
                 copyEditInfoUser = {
                     ...editInfoUser,
-                    site: vaule
+                    website: vaule
                 }
                 setEditInfoUser(copyEditInfoUser)
                 return copyEditInfoUser;
@@ -55,23 +61,42 @@ const ModalWindow2 = (props) => {
 
         }
     }
-    
+
     const onPush = () => {
         props.editUsers(editInfoUser)
+        props.setEditMode(false)
     }
 
     return (
         <div className={styles.viewModal}>
             <div className={styles.viewModal_wrapper}>
+                {deletePost}
                 <div>
-                    <h3>Редактирование</h3>
-                    <input onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='1' type="text" value={editInfoUser.name} />
-                    <input onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='2' type="text" value={editInfoUser.userName} />
-                    <input onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='3' type="text" value={editInfoUser.email} />
-                    <input onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='4' type="text" value={editInfoUser.site} />
-                    <input onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='5' type="text" value={editInfoUser.phone} />
+                    <h3 className={styles.tittle}>Edit profile</h3>
+                    <div className={styles.editItem}>
+                        <p>User Name:</p>
+                        <input className={styles.input} onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='1' type="text" maxLength='15' value={editInfoUser.username} />
+                    </div>
+                    <div className={styles.editItem}>
+                        <p>Name:</p>
+                        <input className={styles.input} onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='2' type="text" maxLength='23' value={editInfoUser.name} />
+                    </div>
+                    <div className={styles.editItem}>
+                        <p>Email:</p>
+                        <input className={styles.input} onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='3' type="text" maxLength='24' value={editInfoUser.email} />
+                    </div>
+                    <div className={styles.editItem}>
+                        <p>Website:</p>
+                        <input className={styles.input} onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='4' type="text" maxLength='24' value={editInfoUser.website} />
+                    </div>
+                    <div className={styles.editItem}>
+                        <p>Phone:</p>
+                        <input className={styles.input} onChange={(e) => { onEditInfoUser(e.target.value, e.target.id) }} id='5' type="text" maxLength='24' value={editInfoUser.phone} />
+                    </div>
                 </div>
-                <div><button onClick={onPush}>Отрпавть</button></div>
+                <div className={styles.submit_wrapper}>
+                    <button className={styles.submit} onClick={onPush}>Save</button>
+                </div>
             </div>
         </div>
     )

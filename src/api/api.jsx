@@ -28,6 +28,6 @@ export const apiGetUsers = async () => {
 };
 
 export const apiGetPhotos = async () => {
-    let response = await instance.get('/photo')
+    let response = await instance.get('/photos')
     return response.data
 };

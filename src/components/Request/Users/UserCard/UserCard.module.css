@@ -1,5 +1,5 @@
 .container {
-    max-width: 350px;
+    max-width: 400px;
     box-sizing: border-box;
 }
 
@@ -12,14 +12,17 @@ h3, h4, p {
     padding: 15px;
     border-radius: 10px;
 }
+
 .card {
     font-size: 14px;
     word-wrap: break-word;
     min-height: 320px;
 }
+
 .card span {
     font-weight: bold;
 }
+
 .avatar img {
     max-width: 100px;
     border: 1px solid #000;
@@ -56,46 +59,58 @@ h3, h4, p {
 .phone {
     font-size: 12px;
 }
+
 .dividingStrip, .leftLogo__dividingStrip {
     background: rgb(0, 212, 255);
     background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
     border-radius: 50%;
 }
+
 .dividingStrip {
     height: 2px;
     width: 50%;
     margin: 10px auto;
 }
+
 .company, .address {
     display: flex;
     height: 90px;
     align-items: center;
-
 }
+
 .leftLogo {
     display: flex;
     align-items: center;
 }
-.leftLogo img{
+
+.leftLogo img {
     height: 40px;
 }
+
 .leftLogo__dividingStrip {
     width: 2px;
     height: 70px;
     margin: 0 10px;
 }
+
 .editInfo {
     position: absolute;
     right: -7px;
     top: -5px;
 }
-.editInfo button{
+
+.editInfo button {
     border: none;
     background: none;
     font-size: 16px;
     color: rgb(88, 88, 88);
 }
+
 .editInfo button:hover {
     cursor: pointer;
     color: rgb(0, 118, 228);
+}
+
+@media screen and (max-width: 1070px) {
+    
 }

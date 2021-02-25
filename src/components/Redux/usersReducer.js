@@ -1,4 +1,4 @@
-import { apiGetUsers } from "../../api/api";
+import { apiGetUserInfo, apiGetUsers } from "../../api/api";
 
 
 const GET_USERS = 'GET_USERS'
@@ -23,10 +23,18 @@ const usersReducer = (state = initialState, action) => {
             }
             return stateCopy
         case EDIT_USERS:
-            console.log(action.newUsersList)
+            let arrNewUserLits = state.usersList.map(item => {
+                if (item.id == action.newUsersList.id) {
+                    item = {
+                        ...item,
+                        ...action.newUsersList
+                    }
+                }
+                return item
+            })
             stateCopy = {
                 ...state,
-                usersList: action.users
+                usersList: arrNewUserLits
             }
             return stateCopy
         default:
@@ -34,18 +42,18 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-
 export const getUsersTC = () => {
     return (
         async (dispatch) => {
-            let responce = await apiGetUsers();
-            dispatch(getUsersAC(responce));
+            let response = await apiGetUsers();
+            dispatch(getUsersAC(response));
         }
     )
 }
 export const editUsersTC = (newUsersList) => {
     return (
         async (dispatch) => {
+            // There should be PUT a request here
             dispatch(editUsersAC(newUsersList));
         }
     )

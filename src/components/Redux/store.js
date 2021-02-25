@@ -7,6 +7,7 @@ import testTwoReducer from './testTwoReducer';
 import thunkMiddleware from 'redux-thunk';
 import requestReducer from './requestReducer';
 import usersReducer from './usersReducer';
+import photosReducer from './photosReducer';
 
 let rootReducer = combineReducers({
     app: appReducer,
@@ -15,6 +16,7 @@ let rootReducer = combineReducers({
     testTwo: testTwoReducer,
     request: requestReducer,
     users: usersReducer,
+    photos: photosReducer,
     form: formReducer,
 });
 
