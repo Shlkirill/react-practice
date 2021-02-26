@@ -4,7 +4,7 @@ import styles from './PhotoCard.module.css'
 const PhotoCard = (props) => {
     return (
         <div>
-            <img src={props.url} alt=""/>
+            <h3>Карточка ебать</h3>
         </div>
     )
 }

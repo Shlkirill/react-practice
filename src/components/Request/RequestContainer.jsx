@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, withRouter } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { deletePostTC, editPostTC, getPostsTC } from '../Redux/requestReducer'
 import styles from './RequestContainer.module.css'
@@ -13,6 +13,7 @@ import Photos from './Photos/Photos'
 import { getPhotosTC } from '../Redux/photosReducer'
 
 const RequestContainer = (props) => {
+    console.log(props)
     useEffect(() => {
         props.getPosts();
         props.getUsers();
@@ -32,7 +33,7 @@ const RequestContainer = (props) => {
             <Route path='/request_axios/users'>
                 <Users users={props.users} editUsers={props.editUsers} />
             </Route>
-            <Route path='/request_axios/photos'>
+            <Route path='/request_axios/photos/:idPhoto?'>
                 <Photos photosList={props.photosList}/>
             </Route>
             <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
@@ -56,5 +57,5 @@ let mapDispatchToProps = {
     editUsers: editUsersTC,
     getPhotos: getPhotosTC
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(RequestContainer)
+ let WithRequestContainer = withRouter(RequestContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(WithRequestContainer)

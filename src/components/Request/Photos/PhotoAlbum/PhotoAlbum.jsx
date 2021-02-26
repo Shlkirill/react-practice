@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './PhotoAlbum.module.css'
 
 const PhotoAlbum = ({ id, photosList }) => {
-    useEffect(() => {
-        console.log('Я альбом')
-    })
     let arr = photosList
         .filter((item, index) => {
             if (index < 4) return item
@@ -16,9 +14,11 @@ const PhotoAlbum = ({ id, photosList }) => {
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <div className={styles.albumCard}>
-                    {arr}
-                </div>
+                <NavLink to={`/request_axios/photos/${id}`}>
+                    <div className={styles.albumCard} id={id}>
+                        {arr}
+                    </div>
+                </NavLink>
                 <p className={styles.description}>Album № {id + 1}</p>
             </div>
         </div>
