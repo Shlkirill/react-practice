@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import styles from './PhotoAlbum.module.css'
+import styles from './AllPhotosAlbums.module.css'
 
-const PhotoAlbum = ({ id, photosList }) => {
+const AllPhotosAlbums = ({ id, photosList }) => {
     let arr = photosList
         .filter((item, index) => {
             if (index < 4) return item
@@ -25,4 +25,4 @@ const PhotoAlbum = ({ id, photosList }) => {
     )
 }
 
-export default PhotoAlbum
+export default AllPhotosAlbums

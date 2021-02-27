@@ -11,9 +11,10 @@ import Users from './Users/Users'
 import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
 import Photos from './Photos/Photos'
 import { getPhotosTC } from '../Redux/photosReducer'
+import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 
 const RequestContainer = (props) => {
-    console.log(props)
+
     useEffect(() => {
         props.getPosts();
         props.getUsers();
@@ -22,7 +23,7 @@ const RequestContainer = (props) => {
 
     return (
         <div className={styles.requestContainer}>
-            { props.loadingProcess && <div className={styles.loaderContainer}>
+            {props.loadingProcess && <div className={styles.loaderContainer}>
                 <Loader />
             </div>}
             <Menu />
@@ -34,7 +35,9 @@ const RequestContainer = (props) => {
                 <Users users={props.users} editUsers={props.editUsers} />
             </Route>
             <Route path='/request_axios/photos/:idPhoto?'>
-                <Photos photosList={props.photosList}/>
+                {(props.match.params.idAlbum == undefined) ?
+                    <Photos photosList={props.photosList} /> :
+                    <PhotoGallery photosList={props.photosList[props.match.params.idAlbum]} idAlbum={props.match.params.idAlbum} />}
             </Route>
             <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
         </div>
@@ -57,5 +60,5 @@ let mapDispatchToProps = {
     editUsers: editUsersTC,
     getPhotos: getPhotosTC
 }
- let WithRequestContainer = withRouter(RequestContainer)
+let WithRequestContainer = withRouter(RequestContainer)
 export default connect(mapStateToProps, mapDispatchToProps)(WithRequestContainer)
