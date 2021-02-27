@@ -1,14 +1,17 @@
 .container {
     padding: 20px 0;
 }
+
 .wrapper {
     margin: 0 auto;
+    padding: 0 50px;
 }
-.photo {
-    border: 1px solid #000;
+.photos {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    grid-gap: 10px;
 }
-.photo img {
-   width: 150px;
-   height: 150px;
-   margin: 0 auto;
+.photo img{
+    max-width: 300px;
 }
