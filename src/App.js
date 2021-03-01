@@ -16,7 +16,7 @@ class App extends React.Component {
           <Route path='/toDoList'> <ToDoListContainer /> </Route>
           <Route path='/practice'><PracticeContainer /></Route>
           <Route path='/tic_tac_toe'><TikTakToeContainer /></Route>
-          <Route path='/request_axios/:subsection?/:idAlbum?'><RequestContainer /></Route>
+          <Route path='/request_axios/:subsection?/:idAlbum?/:idPhoto?'><RequestContainer /></Route>
           <Route path='/*'><Redirect to={'/toDoList'} /></Route>
         </Switch>
       </div >

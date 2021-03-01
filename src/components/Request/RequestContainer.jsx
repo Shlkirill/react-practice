@@ -15,6 +15,10 @@ import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 
 const RequestContainer = (props) => {
 
+    console.log(props)
+    const loadTrigger = props.postsList.length == 0 || props.users.length == 0 || props.photosList.length == 0;
+    const idAlbum = props.match.params.idAlbum;
+
     useEffect(() => {
         props.getPosts();
         props.getUsers();
@@ -23,23 +27,24 @@ const RequestContainer = (props) => {
 
     return (
         <div className={styles.requestContainer}>
-            {props.loadingProcess && <div className={styles.loaderContainer}>
+            {loadTrigger ? <div className={styles.loaderContainer}>
                 <Loader />
-            </div>}
-            <Menu />
-            <Route path='/request_axios/home'>
-                <Home postsList={props.postsList} deletPost={props.deletPost}
-                    editPost={props.editPost} />
-            </Route>
-            <Route path='/request_axios/users'>
-                <Users users={props.users} editUsers={props.editUsers} />
-            </Route>
-            <Route path='/request_axios/photos/:idPhoto?'>
-                {(props.match.params.idAlbum == undefined) ?
-                    <Photos photosList={props.photosList} /> :
-                    <PhotoGallery photosList={props.photosList[props.match.params.idAlbum]} idAlbum={props.match.params.idAlbum} />}
-            </Route>
-            <Route path='/*'><Redirect to={'/request_axios/home'} /></Route>
+            </div> :
+                <div>
+                    <Menu />
+                    <Route path='/request_axios/home'>
+                        <Home postsList={props.postsList} deletPost={props.deletPost}
+                            editPost={props.editPost} />
+                    </Route>
+                    <Route path='/request_axios/users'>
+                        <Users users={props.users} editUsers={props.editUsers} />
+                    </Route>
+                    <Route path='/request_axios/photos'>
+                        {(idAlbum == undefined) ?
+                            <Photos photosList={props.photosList} /> :
+                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} />}
+                    </Route>
+                </div>}
         </div>
     )
 }

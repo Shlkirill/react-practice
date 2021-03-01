@@ -12,10 +12,12 @@
 	justify-content: center;
 	grid-gap: 20px;
 }
-.navigations{
+
+.navigations {
 	margin-top: 25px;
 	text-align: center;
 }
+
 .moreAlbum {
 	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color: #ffffff;
@@ -47,4 +49,18 @@
 .moreAlbum:active {
 	position: relative;
 	top: 1px;
+}
+
+@media screen and (max-width: 1070px) {
+	.photosAlbum {
+		display: grid;
+		grid-template-columns: auto auto;
+
+	}
+}
+
+@media screen and (max-width: 745px) {
+	.photosAlbum {
+		grid-template-columns: auto;
+	}
 }
