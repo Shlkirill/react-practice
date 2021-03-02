@@ -15,9 +15,9 @@ import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 
 const RequestContainer = (props) => {
 
-    console.log(props)
     const loadTrigger = props.postsList.length == 0 || props.users.length == 0 || props.photosList.length == 0;
     const idAlbum = props.match.params.idAlbum;
+    const idPhoto = props.match.params.idPhoto;
 
     useEffect(() => {
         props.getPosts();
@@ -39,10 +39,10 @@ const RequestContainer = (props) => {
                     <Route path='/request_axios/users'>
                         <Users users={props.users} editUsers={props.editUsers} />
                     </Route>
-                    <Route path='/request_axios/photos'>
+                    <Route path='/request_axios/photos/'>
                         {(idAlbum == undefined) ?
                             <Photos photosList={props.photosList} /> :
-                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} />}
+                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} idPhoto={idPhoto}/>}
                     </Route>
                 </div>}
         </div>

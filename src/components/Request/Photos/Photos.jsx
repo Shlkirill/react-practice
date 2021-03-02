@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import AllPhotosAlbums from './AllPhotosAlbums/AllPhotosAlbums';
 import styles from './Photos.module.css'
 
@@ -20,7 +20,7 @@ const Photos = ({ photosList }) => {
                     {arrAllPhotosAlbums}
                 </div>
                 <div className={styles.navigations}>
-                    <button className={styles.moreAlbum} onClick={()=> {setViewAlbm(viewAlbm + 3)}}>
+                    <button className={styles.moreAlbum} onClick={() => { setViewAlbm(viewAlbm + 3) }}>
                         More albms
                     </button>
                 </div>
