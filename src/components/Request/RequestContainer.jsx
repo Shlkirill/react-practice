@@ -12,6 +12,7 @@ import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
 import Photos from './Photos/Photos'
 import { getPhotosTC } from '../Redux/photosReducer'
 import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
+import { fakeApiGetPosts } from '../../api/fakeApi'
 
 const RequestContainer = (props) => {
 
@@ -63,7 +64,8 @@ let mapDispatchToProps = {
     editPost: editPostTC,
     getUsers: getUsersTC,
     editUsers: editUsersTC,
-    getPhotos: getPhotosTC
+    getPhotos: getPhotosTC,
+    getfakeApiGetPosts: fakeApiGetPosts
 }
 let WithRequestContainer = withRouter(RequestContainer)
 export default connect(mapStateToProps, mapDispatchToProps)(WithRequestContainer)

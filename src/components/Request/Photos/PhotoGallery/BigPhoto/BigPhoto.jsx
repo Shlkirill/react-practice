@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import styles from './BigPhotoModal.module.css'
+import styles from './BigPhoto.module.css'
 
 const BigPhoto = (props) => {
-    console.log(props)
 
     let photo = props.photosList.find(item => item.id == +props.idPhoto) || []
-
+    console.log(photo)
     if (photo.length == 0) props.historyUrl.goBack()
 
     const onRedirect = (target) => {
@@ -17,7 +16,7 @@ const BigPhoto = (props) => {
         <div className={styles.container} id='1' onClick={(e) => { onRedirect(e.target) }}>
             <div className={styles.wrapper}>
                 <div>
-                    <button>Back</button>
+                    <button onClick={() => {props.historyUrl.push(`/request_axios/photos/${props.idAlbum}/${+props.idPhoto - 1}`)}}>Back</button>
                 </div>
                 <div className={styles.modal}>
                     <img src={photo.url} alt="" />

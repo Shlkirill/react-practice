@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink, Route, useHistory } from 'react-router-dom'
-import BigPhoto from './BigPhotoModal/BigPhoto'
+import BigPhoto from './BigPhoto/BigPhoto'
 import styles from './PhotoGallery.module.css'
 
 const PhotoGallery = (props) => {
