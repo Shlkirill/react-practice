@@ -4,7 +4,7 @@ import React from 'react'
 import { useEffect, useState } from 'react/cjs/react.development'
 import styles from './ModalWindow.module.css'
 
-const ModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost }) => {
+const ModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost, addPost }) => {
     let [newDataPost, setNewDataPost] = useState({
         postTitle: viewPost.title,
         postBody: viewPost.body
@@ -15,7 +15,7 @@ const ModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost }) => {
         deletPost(viewPost.postId);
         onCloseViewPost();
     }
-    const onChangeDataPostTittle= (e) => {
+    const onChangeDataPostTittle = (e) => {
         setNewDataPost({
             postTitle: e.target.value,
             postBody: newDataPost.postBody
@@ -29,6 +29,10 @@ const ModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost }) => {
     }
     const onEditPost = () => {
         editPost(viewPost.postId, newDataPost.postTitle, newDataPost.postBody);
+        onCloseViewPost();
+    }
+    const onAddPost = () => {
+        addPost(newDataPost.postTitle, newDataPost.postBody)
         onCloseViewPost();
     }
     return (
@@ -56,12 +60,26 @@ const ModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost }) => {
                         <h3>{viewPost.messages}</h3>
                         <div className={styles.editContainer}>
                             <p>Tittle:</p>
-                            <textarea className={styles.editTittleTextarea} onChange={(e) => {onChangeDataPostTittle(e)}} value={newDataPost.postTitle}></textarea>
+                            <textarea className={styles.editTittleTextarea} onChange={(e) => { onChangeDataPostTittle(e) }} value={newDataPost.postTitle}></textarea>
                             <p>Body:</p>
-                            <textarea className={styles.editBodyTextarea} onChange={(e) => {onChangeDataPostBody(e)}} value={newDataPost.postBody}></textarea>
+                            <textarea className={styles.editBodyTextarea} onChange={(e) => { onChangeDataPostBody(e) }} value={newDataPost.postBody}></textarea>
                         </div>
                         <div className={styles.viewModal_navigation}>
                             <button className={styles.viewModal_button} onClick={onEditPost}>Edit</button>
+                            <button className={styles.viewModal_button} onClick={onCloseViewPost}>Cancel</button>
+                        </div>
+                    </div>}
+                {viewPost.trigger == 'ADD' &&
+                    <div>
+                        <h3>Add new post</h3>
+                        <div className={styles.editContainer}>
+                            <p>Tittle:</p>
+                            <textarea className={styles.editTittleTextarea} onChange={(e) => { onChangeDataPostTittle(e) }} value={newDataPost.postTitle}></textarea>
+                            <p>Body:</p>
+                            <textarea className={styles.editBodyTextarea} onChange={(e) => { onChangeDataPostBody(e) }} value={newDataPost.postBody}></textarea>
+                        </div>
+                        <div className={styles.viewModal_navigation}>
+                            <button className={styles.viewModal_button} onClick={onAddPost}>Add</button>
                             <button className={styles.viewModal_button} onClick={onCloseViewPost}>Cancel</button>
                         </div>
                     </div>}

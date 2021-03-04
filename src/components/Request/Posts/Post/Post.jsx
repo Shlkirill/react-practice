@@ -1,9 +1,9 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import styles from './BlockInfo.module.css'
+import styles from './Post.module.css'
 
-const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
+const Post = ({ id, postBody, postTitle, onViewPost, cardSizeBig, datePublisher }) => {
     let [backgroundColor, setBackgroundColor] = useState(0)
 
     const onSetBackgroundColor = () => {
@@ -33,6 +33,14 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
                     </div>
                     <p className={styles.blockInfo_info}>{postBody}</p>
                 </div>
+                <div className={styles.blockInfo_datePublisher}>
+                    <p>
+                        {datePublisher.time}
+                    </p>
+                    <p>
+                        {datePublisher.date}
+                    </p>
+                </div>
                 <div className={styles.blockInfo_navigation}>
                     <button onClick={() => onViewPost(postTitle, postBody, id, 'VIEW')}>More...</button>
                     <button onClick={onSetBackgroundColor}>Colors</button>
@@ -42,4 +50,4 @@ const BlockInfo = ({ id, postBody, postTitle, onViewPost, cardSizeBig }) => {
     )
 }
 
-export default BlockInfo
+export default Post

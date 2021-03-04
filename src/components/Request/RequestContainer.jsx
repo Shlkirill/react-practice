@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
-import { deletePostTC, editPostTC, getPostsTC } from '../Redux/requestReducer'
+import { deletePostTC, editPostTC, getPostsTC, addPostTC } from '../Redux/requestReducer'
 import styles from './RequestContainer.module.css'
-import Home from './Home/Home'
+import Posts from './Posts/Posts'
 import Menu from './Menu/Menu'
 import Loader from '../common/Loader'
 import Users from './Users/Users'
@@ -34,7 +34,7 @@ const RequestContainer = (props) => {
                 <div>
                     <Menu />
                     <Route path='/request_axios/home'>
-                        <Home postsList={props.postsList} deletPost={props.deletPost}
+                        <Posts postsList={props.postsList} addPost={props.addPost} deletPost={props.deletPost}
                             editPost={props.editPost} />
                     </Route>
                     <Route path='/request_axios/users'>
@@ -60,6 +60,7 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = {
     getPosts: getPostsTC,
+    addPost: addPostTC,
     deletPost: deletePostTC,
     editPost: editPostTC,
     getUsers: getUsersTC,

@@ -119,6 +119,12 @@
 .backgroundBlue .blockInfo_info:after {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #554afa 100%);
 }
+.blockInfo_datePublisher {
+    position: absolute;
+    bottom: 8px;
+    font-size: 10px;
+    color: rgb(105, 105, 105);
+}
 @media screen and (max-width: 670px) {
     .blockInfoBigCard {
         width: 320px;

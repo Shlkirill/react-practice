@@ -1,12 +1,14 @@
-import { compose } from "redux";
-import { apiDeletPost, apiEditPost, apiGetPosts } from "../../api/api";
+import { act } from "react-dom/test-utils";
+import { apiAddPost, apiDeletPost, apiEditPost, apiGetPosts } from "../../api/api";
 
 const GET_POSTS = 'GET_POSTS';
+const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
 const EDIT_POST = 'EDIT_POST';
 const LOADING = 'LOADING';
 
 export const getPostsAC = (posts) => ({ type: GET_POSTS, posts });
+export const addPostAC = (newPost) => ({ type: ADD_POST, newPost })
 export const deletePostAC = (postId) => ({ type: DELETE_POST, postId });
 export const editPostAC = (postId, postTittle, postBody) => ({ type: EDIT_POST, postId, postTittle, postBody });
 export const loadingAC = () => ({ type: LOADING })
@@ -20,10 +22,28 @@ const requestReducer = (state = initialState, action) => {
   let stateCopy;
   switch (action.type) {
     case GET_POSTS:
+      const  compare = (a, b) => {
+        if (a > b) return 1; // если первое значение больше второго
+        if (a == b) return 0; // если равны
+        if (a < b) return -1; // если первое значение меньше второго
+      }
+      let a = action.posts.sort((a, b) => {
+        console.log(a.datePublisher.time, b.datePublisher.time )
+        if (a.datePublisher.time > b.datePublisher.time) return 1; // если первое значение больше второго
+        if (a.datePublisher.time == b.datePublisher.time) return 0; // если равны
+        if (a.datePublisher.time < b.datePublisher.time) return -1; // если первое значение меньше второго
+      })
+      console.log(a)
       stateCopy = {
         ...state,
         postsList: action.posts
       }
+      return stateCopy;
+    case ADD_POST:
+      stateCopy = {
+        ...state,
+      }
+      stateCopy.postsList.unshift(action.newPost)
       return stateCopy;
     case DELETE_POST:
       let arrDeleteItem = state.postsList.filter(item => {
@@ -87,4 +107,14 @@ export const editPostTC = (idPost, postTittle, postBody) => {
   )
 }
 
+export const addPostTC = (postTittle, postBody) => {
+  return (
+    async (dispatch) => {
+      dispatch(loadingAC())
+      let response = await apiAddPost(postTittle, postBody);
+      dispatch(addPostAC(response.data))
+      dispatch(loadingAC())
+    }
+  )
+}
 export default requestReducer
