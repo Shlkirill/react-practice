@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect, Route, withRouter } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { deletePostTC, editPostTC, getPostsTC, addPostTC } from '../Redux/requestReducer'
 import styles from './RequestContainer.module.css'
@@ -16,7 +16,7 @@ import { fakeApiGetPosts } from '../../api/fakeApi'
 
 const RequestContainer = (props) => {
 
-    const loadTrigger = props.postsList.length == 0 || props.users.length == 0 || props.photosList.length == 0;
+    const loadTrigger = props.users.length == 0 || props.photosList.length == 0;
     const idAlbum = props.match.params.idAlbum;
     const idPhoto = props.match.params.idPhoto;
 
@@ -28,9 +28,7 @@ const RequestContainer = (props) => {
 
     return (
         <div className={styles.requestContainer}>
-            {loadTrigger ? <div className={styles.loaderContainer}>
-                <Loader />
-            </div> :
+            {loadTrigger ? <Loader />:
                 <div>
                     <Menu />
                     <Route path='/request_axios/home'>
@@ -43,8 +41,9 @@ const RequestContainer = (props) => {
                     <Route path='/request_axios/photos/'>
                         {(idAlbum == undefined) ?
                             <Photos photosList={props.photosList} /> :
-                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} idPhoto={idPhoto}/>}
+                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} idPhoto={idPhoto} />}
                     </Route>
+                    {props.loadingProcess && <Loader />}
                 </div>}
         </div>
     )

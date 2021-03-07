@@ -8,7 +8,11 @@ const AllPhotosAlbums = ({ id, photosList }) => {
             if (index < 4) return item
         })
         .map(item => {
-            return <img className={styles.preview} src={item.url} alt="" />
+            let backgroundImageStyle = {
+                backgroundImage: 'url(' + item.url + ')',
+                backgroundSize: "cover",
+            }
+            return <div className={styles.preview} style={backgroundImageStyle}>  </div>
 
         })
     return (

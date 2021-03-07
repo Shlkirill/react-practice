@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import styles from './Post.module.css'
 
 const Post = ({ id, postBody, postTitle, onViewPost, cardSizeBig, datePublisher }) => {
+
     let [backgroundColor, setBackgroundColor] = useState(0)
 
     const onSetBackgroundColor = () => {
@@ -35,7 +36,7 @@ const Post = ({ id, postBody, postTitle, onViewPost, cardSizeBig, datePublisher 
                 </div>
                 <div className={styles.blockInfo_datePublisher}>
                     <p>
-                        {datePublisher.time}
+                        {datePublisher.time} {datePublisher.edit && <span>Edit</span>}
                     </p>
                     <p>
                         {datePublisher.date}

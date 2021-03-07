@@ -13,11 +13,31 @@
 .wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: rgba(0, 0, 0, 0.384);
-    padding: 100px 200px;
+    padding: 20px;
+    min-width:  70%;
+    min-height: 70%;
 }
 .modal {
-    display: inline-block;
+    position: relative;
+    text-align: center;
     background-color: rgb(255, 255, 255);
     padding: 20px;
+}
+.title {
+    text-align: center;
+}
+.iconDelete {
+    top: 25px;
+    right: 30px;
+    position: absolute;
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.479);
+    transition: all 500ms;
+}
+.iconDelete:hover {
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.863);
+    transform: scale(1.1);
 }

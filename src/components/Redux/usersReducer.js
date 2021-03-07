@@ -1,4 +1,5 @@
-import { apiGetUserInfo, apiGetUsers } from "../../api/api";
+import { apiGetUserInfo, apiGetUsers, apiEditUsers } from "../../api/api";
+import { loadingAC } from "./requestReducer";
 
 
 const GET_USERS = 'GET_USERS'
@@ -50,11 +51,14 @@ export const getUsersTC = () => {
         }
     )
 }
-export const editUsersTC = (newUsersList) => {
+export const editUsersTC = (newInfoUser) => {
+
     return (
         async (dispatch) => {
-            // There should be PUT a request here
-            dispatch(editUsersAC(newUsersList));
+            dispatch(loadingAC());
+            await apiEditUsers(newInfoUser)
+            dispatch(editUsersAC(newInfoUser));
+            dispatch(loadingAC());
         }
     )
 }

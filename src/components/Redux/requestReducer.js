@@ -1,5 +1,6 @@
 import { act } from "react-dom/test-utils";
 import { apiAddPost, apiDeletPost, apiEditPost, apiGetPosts } from "../../api/api";
+import { compose } from "redux";
 
 const GET_POSTS = 'GET_POSTS';
 const ADD_POST = 'ADD_POST';
@@ -22,18 +23,16 @@ const requestReducer = (state = initialState, action) => {
   let stateCopy;
   switch (action.type) {
     case GET_POSTS:
-      const  compare = (a, b) => {
-        if (a > b) return 1; // если первое значение больше второго
-        if (a == b) return 0; // если равны
-        if (a < b) return -1; // если первое значение меньше второго
+      const splitArrayDate= (dateObj) => {
+
+        let dateArray = (dateObj.datePublisher.date.split('.'))
+        let dateString = (dateArray[2] + '-' + dateArray[1] + '-' + dateArray[0])
+        return dateString + 'T' + dateObj.datePublisher.time
       }
-      let a = action.posts.sort((a, b) => {
-        console.log(a.datePublisher.time, b.datePublisher.time )
-        if (a.datePublisher.time > b.datePublisher.time) return 1; // если первое значение больше второго
-        if (a.datePublisher.time == b.datePublisher.time) return 0; // если равны
-        if (a.datePublisher.time < b.datePublisher.time) return -1; // если первое значение меньше второго
-      })
-      console.log(a)
+      
+      action.posts.sort((a, b) => {
+        return new Date(splitArrayDate(b)) - new Date(splitArrayDate(a))})
+        
       stateCopy = {
         ...state,
         postsList: action.posts
@@ -59,6 +58,7 @@ const requestReducer = (state = initialState, action) => {
         if (item.id == action.postId) {
           item.title = action.postTittle
           item.body = action.postBody
+          item.datePublisher.edit = true
         }
         return item
       })

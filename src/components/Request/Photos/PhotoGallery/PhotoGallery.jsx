@@ -7,10 +7,14 @@ const PhotoGallery = (props) => {
     let historyUrl = useHistory();
 
     let arrPhotosList = props.photosList.map(item => {
+        let backgroundImageStyle = {
+            backgroundImage: 'url(' + item.url + ')',
+            backgroundSize: "cover",
+        }
         return (
             <NavLink to={`/request_axios/photos/${props.idAlbum}/${item.id}`} >
-                <div className={styles.photo}  >
-                    <img src={item.url} alt="" />
+                <div className={styles.photo} style={backgroundImageStyle} >
+
                 </div>
             </NavLink>
         )
