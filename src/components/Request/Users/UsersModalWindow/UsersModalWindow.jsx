@@ -1,9 +1,9 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
-import styles from './ModalWindow2.module.css'
+import styles from './UsersModalWindow.module.css'
 
-const ModalWindow2 = (props) => {
+const UsersModalWindow = (props) => {
 
     let infoUserObj = {
         id: props.id,
@@ -102,4 +102,4 @@ const ModalWindow2 = (props) => {
     )
 }
 
-export default ModalWindow2
+export default UsersModalWindow

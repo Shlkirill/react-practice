@@ -5,7 +5,7 @@ import companyLogo from '../../../../img/users/logo-business.png'
 import addressLogo from '../../../../img/users/addressLogo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faUserEdit } from '@fortawesome/free-solid-svg-icons'
-import ModalWindow2 from '../../ModalWindow2/ModalWindow2'
+import UsersModalWindow from '../UsersModalWindow/UsersModalWindow'
 
 
 const UserCard = (props) => {
@@ -61,7 +61,7 @@ const UserCard = (props) => {
                     </div>
                 </div>
             </div>
-            {editMode && <ModalWindow2 name={props.name} userName={props.userName} email={props.email}
+            {editMode && <UsersModalWindow name={props.name} userName={props.userName} email={props.email}
                                         phone={props.phone} site={props.website} editUsers={props.editUsers}
                                         id={props.id} setEditMode={setEditMode}/>}
         </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react/cjs/react.development'
 import UserCard from './UserCard/UserCard'
 import styles from './Users.module.css'
-import ModalWindow2 from '../ModalWindow2/ModalWindow2'
 
 const Users = ({ users, editUsers }) => {
     let [visibleUsers, setVisibleUsers] = useState(3)

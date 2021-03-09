@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react/cjs/react.development'
-import ModalWindow from '../ModalWindow/ModalWindow'
+import PostsModalWindow from './PostsModalWindow/PostsModalWindow'
 import Post from './Post/Post'
 import styles from './Posts.module.css'
 
@@ -76,7 +76,7 @@ const Posts = ({ postsList, deletPost, editPost, addPost }) => {
             <div className={onePost[onePost.length - 1] == undefined && сheckingForPosts ? styles.main_showMoreContainer : styles.hide}>
                 <button className={styles.main_showMore} onClick={onShowMore}>Show more</button>
             </div>
-            {viewPost.show && <ModalWindow viewPost={viewPost} onCloseViewPost={onCloseViewPost} deletPost={deletPost} editPost={editPost} addPost={addPost}/>}
+            {viewPost.show && <PostsModalWindow viewPost={viewPost} onCloseViewPost={onCloseViewPost} deletPost={deletPost} editPost={editPost} addPost={addPost}/>}
         </div>
     )
 }
