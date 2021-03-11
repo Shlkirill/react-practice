@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/toDoList/static/css/main.2a0a214f.chunk.css",
-    "main.js": "/toDoList/static/js/main.8d43ec02.chunk.js",
-    "main.js.map": "/toDoList/static/js/main.8d43ec02.chunk.js.map",
-    "runtime-main.js": "/toDoList/static/js/runtime-main.0f49a471.js",
-    "runtime-main.js.map": "/toDoList/static/js/runtime-main.0f49a471.js.map",
-    "static/css/2.816bd227.chunk.css": "/toDoList/static/css/2.816bd227.chunk.css",
-    "static/js/2.9dd821d7.chunk.js": "/toDoList/static/js/2.9dd821d7.chunk.js",
-    "static/js/2.9dd821d7.chunk.js.map": "/toDoList/static/js/2.9dd821d7.chunk.js.map",
-    "static/js/3.cab74e10.chunk.js": "/toDoList/static/js/3.cab74e10.chunk.js",
-    "static/js/3.cab74e10.chunk.js.map": "/toDoList/static/js/3.cab74e10.chunk.js.map",
-    "index.html": "/toDoList/index.html",
-    "static/css/2.816bd227.chunk.css.map": "/toDoList/static/css/2.816bd227.chunk.css.map",
-    "static/css/main.2a0a214f.chunk.css.map": "/toDoList/static/css/main.2a0a214f.chunk.css.map",
-    "static/js/2.9dd821d7.chunk.js.LICENSE.txt": "/toDoList/static/js/2.9dd821d7.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/toDoList/static/media/slick.c94f7671.ttf",
-    "static/media/addressLogo.b08fbed3.png": "/toDoList/static/media/addressLogo.b08fbed3.png",
-    "static/media/ToDoList.module.css": "/toDoList/static/media/background.523badb3.jpg",
-    "static/media/logo-business.75790f79.png": "/toDoList/static/media/logo-business.75790f79.png"
+    "main.css": "/react-practice/static/css/main.38d35dbc.chunk.css",
+    "main.js": "/react-practice/static/js/main.e2d5dfcc.chunk.js",
+    "main.js.map": "/react-practice/static/js/main.e2d5dfcc.chunk.js.map",
+    "runtime-main.js": "/react-practice/static/js/runtime-main.f7346eb5.js",
+    "runtime-main.js.map": "/react-practice/static/js/runtime-main.f7346eb5.js.map",
+    "static/css/2.9932a40f.chunk.css": "/react-practice/static/css/2.9932a40f.chunk.css",
+    "static/js/2.64c4e020.chunk.js": "/react-practice/static/js/2.64c4e020.chunk.js",
+    "static/js/2.64c4e020.chunk.js.map": "/react-practice/static/js/2.64c4e020.chunk.js.map",
+    "static/js/3.8fd8da17.chunk.js": "/react-practice/static/js/3.8fd8da17.chunk.js",
+    "static/js/3.8fd8da17.chunk.js.map": "/react-practice/static/js/3.8fd8da17.chunk.js.map",
+    "index.html": "/react-practice/index.html",
+    "static/css/2.9932a40f.chunk.css.map": "/react-practice/static/css/2.9932a40f.chunk.css.map",
+    "static/css/main.38d35dbc.chunk.css.map": "/react-practice/static/css/main.38d35dbc.chunk.css.map",
+    "static/js/2.64c4e020.chunk.js.LICENSE.txt": "/react-practice/static/js/2.64c4e020.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-practice/static/media/slick.c94f7671.ttf",
+    "static/media/addressLogo.b08fbed3.png": "/react-practice/static/media/addressLogo.b08fbed3.png",
+    "static/media/ToDoList.module.css": "/react-practice/static/media/background.523badb3.jpg",
+    "static/media/logo-business.75790f79.png": "/react-practice/static/media/logo-business.75790f79.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.0f49a471.js",
-    "static/css/2.816bd227.chunk.css",
-    "static/js/2.9dd821d7.chunk.js",
-    "static/css/main.2a0a214f.chunk.css",
-    "static/js/main.8d43ec02.chunk.js"
+    "static/js/runtime-main.f7346eb5.js",
+    "static/css/2.9932a40f.chunk.css",
+    "static/js/2.64c4e020.chunk.js",
+    "static/css/main.38d35dbc.chunk.css",
+    "static/js/main.e2d5dfcc.chunk.js"
   ]
 }

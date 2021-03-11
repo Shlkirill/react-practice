@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field } from 'redux-form';
-import { minLength2, onlySpaces, required } from '../../../fieldLevelValidation/validation';
+import { TextareaField } from '../../../common/forms/formsControl';
+import {onlySpaces, required } from '../../../fieldLevelValidation/validation';
 import styles from './PostsModalWindow.module.css'
-import TextareaField from './TextareaField';
 
 const EditPostModal = ({ onCloseViewPost, ...props }) => {
     return (

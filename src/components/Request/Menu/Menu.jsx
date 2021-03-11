@@ -8,7 +8,7 @@ const Menu = () => {
             <div className={styles.menu_container}>
                 <ul className={styles.menu_list}>
                     <li className={styles.menu_item}>
-                        <NavLink to='/request_axios/home' activeClassName={styles.active} className={styles.link}>Home</NavLink>
+                        <NavLink to='/request_axios/posts' activeClassName={styles.active} className={styles.link}>Posts</NavLink>
                         </li>
                     <li className={styles.menu_item}>
                         <NavLink to='/request_axios/users' activeClassName={styles.active} className={styles.link}>Users</NavLink>

@@ -61,11 +61,11 @@ const Posts = ({ postsList, deletPost, editPost, addPost }) => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.main_navigationSizeCards + ' ' + styles.hide_navigationResize}>
+            <div className={styles.main_navigationSizeCards }>
                 <div>
                     <button className={styles.addPost} onClick={onAddPost}>Add post</button>
                 </div>
-                {сheckingForPosts && <div>
+                {сheckingForPosts && <div className={styles.hide_navigationResize}>
                     <button className={cardSizeBig && styles.main_buttonActive} onClick={onBigCard}>Make big cards</button>
                     <button className={!cardSizeBig && styles.main_buttonActive} onClick={onSmallCard}>Make small cards</button>
                 </div>}

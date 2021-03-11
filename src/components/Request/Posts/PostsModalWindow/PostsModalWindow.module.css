@@ -36,6 +36,7 @@
 	border: 1px solid rgb(160, 160, 160);
 	padding: 20px 30px;
 	box-shadow: 1px 4px 20px 2px #ffffff;
+	margin: 10px;
 }
 .viewModal_navigation {
 	text-align: right;
@@ -71,11 +72,4 @@
 }
 .editBodyTextarea  {
 	height: 110px;
-}
-.formError {
-	color: red;
-	font-size: 12px;
-}
-.textareaFormError {
-	border: 1px solid red;
 }

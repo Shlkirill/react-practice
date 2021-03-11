@@ -31,7 +31,7 @@ const RequestContainer = (props) => {
             {loadTrigger ? <Loader />:
                 <div>
                     <Menu />
-                    <Route path='/request_axios/home'>
+                    <Route path='/request_axios/posts'>
                         <Posts postsList={props.postsList} addPost={props.addPost} deletPost={props.deletPost}
                             editPost={props.editPost} />
                     </Route>

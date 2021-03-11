@@ -1,0 +1,7 @@
+.formError {
+	color: red;
+	font-size: 12px;
+}
+.textareaFormError {
+	border: 1px solid red;
+}
