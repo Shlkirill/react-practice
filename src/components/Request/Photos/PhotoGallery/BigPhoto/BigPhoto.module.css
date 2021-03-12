@@ -10,7 +10,9 @@
     align-items: center;
     z-index: 999;
 }
-
+.wrapper {
+    position: relative;
+}
 .modalPhoto {
     position: relative;
     text-align: center;
@@ -79,4 +81,25 @@
     font-size: 40px;
     opacity: 0.6;
     transition: all 500ms;
+}
+.rightArrow, .leftArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    opacity: 0.5;
+    color: rgb(102, 102, 102);
+    transition: all 500ms;
+}
+.leftArrow {
+    left: 10px;
+}
+.rightArrow {
+    right: 10px;
+}
+.rightArrow:hover, .leftArrow:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: rgb(240, 240, 240);
+    font-size: 60px;
 }
