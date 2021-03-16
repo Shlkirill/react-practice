@@ -23,6 +23,7 @@ const PostsModalWindow = ({ viewPost, onCloseViewPost, deletPost, editPost, addP
     }
 
     const onSubmitEditPost = (formData) => {
+        console.log(formData)
         editPost(viewPost.postId, formData.title, formData.body);
         onCloseViewPost();
     }

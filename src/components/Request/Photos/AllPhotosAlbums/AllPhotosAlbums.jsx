@@ -10,7 +10,8 @@ const AllPhotosAlbums = ({ id, photosList }) => {
         .map(item => {
             let backgroundImageStyle = {
                 backgroundImage: 'url(' + item.url + ')',
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
             }
             return <div className={styles.preview} style={backgroundImageStyle}>  </div>
 

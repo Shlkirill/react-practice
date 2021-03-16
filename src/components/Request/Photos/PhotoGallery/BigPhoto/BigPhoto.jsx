@@ -8,6 +8,7 @@ const BigPhoto = (props) => {
     let [editMode, setEditMode] = useState(false)
 
     let photo = props.photosList.find(item => item.id == +props.idPhoto) || []
+    console.log(photo)
 
     if (photo.length == 0) props.historyUrl.goBack()
     const onRedirect = (target) => {
@@ -15,7 +16,7 @@ const BigPhoto = (props) => {
     }
 
     const closeWindow = <FontAwesomeIcon icon={faTimes} className={styles.closeWindow} id='2' onClick={(e) => { onRedirect(e.currentTarget) }} />
-    const editTitle = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit}  onClick={() => {setEditMode(true)}}/>
+    const editTitle = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit} onClick={() => { setEditMode(true) }} />
     const deletePhoto = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete} />
     const arrowLeft = <FontAwesomeIcon icon={faChevronLeft} className={styles.leftArrow}
         onClick={() => { props.historyUrl.push(`/request_axios/photos/${props.idAlbum}/${+props.idPhoto - 1}`) }} />
@@ -41,7 +42,7 @@ const BigPhoto = (props) => {
                 {arrowLeft}
                 {arrowRight}
             </div>
-            {editMode && <ModalWindowPhoto setEditMode={setEditMode} />}
+            {editMode && <ModalWindowPhoto setEditMode={setEditMode} title={photo.title} id={photo.id}/>}
         </div>
     )
 }
