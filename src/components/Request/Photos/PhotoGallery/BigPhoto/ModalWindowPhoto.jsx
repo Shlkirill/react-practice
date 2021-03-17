@@ -12,23 +12,45 @@ const EditTitlePhoto = (props) => {
 }
 
 
-const ModalWindowPhoto = ({ setEditMode, title, id }) => {
+const ModalWindowPhoto = ({ setEditMode, title, id, idAlbum, editTitlePhoto, modalMode, deletePhoto }) => {
 
     const EditTitlePhotoForm = reduxForm({
         form: 'editTitlePhoto'
     })(EditTitlePhoto)
 
     const onEditTitle = (value) => {
-        console.log(value, id)
-        setEditMode(false)
+        editTitlePhoto(value.title, id, idAlbum)
+        setEditMode({
+            mode: false,
+            modalMode: ''
+        })
+    }
+    const onDeletePhoto = () => {
+        deletePhoto(id)
+        setEditMode({
+            mode: false,
+            modalMode: ''
+        })
     }
 
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 <div className={styles.modal}>
-                    <EditTitlePhotoForm initialValues={{ title }} onSubmit={onEditTitle} onEditTitle={onEditTitle} />
-                    <button onClick={() => { setEditMode(false) }}>Close</button>
+                    {modalMode == 'EDIT' && <EditTitlePhotoForm initialValues={{ title }} onSubmit={onEditTitle} onEditTitle={onEditTitle} />}
+                    {modalMode == 'DELETE' && <div>
+                        <h3>Delete this photo?</h3>
+                        <div>
+                            <button onClick={onDeletePhoto}>Yes</button>
+                            <button>No</button>
+                        </div>
+                    </div>}
+                    <button onClick={() => {
+                        setEditMode({
+                            mode: false,
+                            modalMode: ''
+                        })
+                    }}>Close</button>
                 </div>
             </div>
         </div>

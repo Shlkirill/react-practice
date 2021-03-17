@@ -75,3 +75,17 @@ export const apiGetPhotos = async () => {
     let response = await instance.get('/photos')
     return response.data
 };
+
+export const apiEditTitlePhoto = async (title, id) => {
+    let getPhoto = await instance.get(`/photos/${id}`)
+    let copyPhoto = {
+        ...getPhoto.data,
+        title
+    }
+    let response = await instance.put(`/photos/${id}`, copyPhoto);
+    console.log(response)
+}
+
+export const apiDeletePhoto = async (id) => {
+    await instance.delete(`/photos/${id}`)
+}

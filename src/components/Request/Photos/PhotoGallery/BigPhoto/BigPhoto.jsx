@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ModalWindowPhoto from './ModalWindowPhoto'
 
 const BigPhoto = (props) => {
-    let [editMode, setEditMode] = useState(false)
-
+    let [editMode, setEditMode] = useState({
+        mode: false,
+        modalMode: ''
+    })
+    console.log(editMode)
     let photo = props.photosList.find(item => item.id == +props.idPhoto) || []
-    console.log(photo)
 
     if (photo.length == 0) props.historyUrl.goBack()
     const onRedirect = (target) => {
@@ -16,8 +18,20 @@ const BigPhoto = (props) => {
     }
 
     const closeWindow = <FontAwesomeIcon icon={faTimes} className={styles.closeWindow} id='2' onClick={(e) => { onRedirect(e.currentTarget) }} />
-    const editTitle = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit} onClick={() => { setEditMode(true) }} />
-    const deletePhoto = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete} />
+    const editTitle = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit} onClick={() => {
+        setEditMode({
+            mode: true,
+            modalMode: 'EDIT'
+        })
+    }} />
+
+    const deletePhoto = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete} onClick={() => {
+        setEditMode({
+            mode: true,
+            modalMode: 'DELETE'
+        })
+    }} />
+
     const arrowLeft = <FontAwesomeIcon icon={faChevronLeft} className={styles.leftArrow}
         onClick={() => { props.historyUrl.push(`/request_axios/photos/${props.idAlbum}/${+props.idPhoto - 1}`) }} />
     const arrowRight = <FontAwesomeIcon icon={faChevronRight} className={styles.rightArrow}
@@ -42,7 +56,9 @@ const BigPhoto = (props) => {
                 {arrowLeft}
                 {arrowRight}
             </div>
-            {editMode && <ModalWindowPhoto setEditMode={setEditMode} title={photo.title} id={photo.id}/>}
+            {editMode.mode && <ModalWindowPhoto setEditMode={setEditMode} title={photo.title} id={photo.id}
+                editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={editMode.modalMode} 
+                idAlbum={props.idAlbum}/>}
         </div>
     )
 }

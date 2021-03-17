@@ -22,8 +22,9 @@ const PhotoGallery = (props) => {
     return (
         <div className={styles.container}>
             {props.idPhoto && <Route path='/request_axios/:subsection?/:idAlbum/:idPhoto'>
-                <BigPhoto photosList={props.photosList} idPhoto={props.idPhoto}
-                    historyUrl={historyUrl} idAlbum={props.idAlbum} />
+                <BigPhoto photosList={props.photosList} idPhoto={props.idPhoto} idAlbum={props.idAlbum}
+                    historyUrl={historyUrl} idAlbum={props.idAlbum} editTitlePhoto={props.editTitlePhoto}
+                    deletePhoto={props.deletePhoto}/>
             </Route>}
             <h3 className={styles.tittle}>Album № {+props.idAlbum + 1}</h3>
             <div className={styles.wrapper}>

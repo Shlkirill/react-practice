@@ -10,7 +10,7 @@ import Loader from '../common/Loader'
 import Users from './Users/Users'
 import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
 import Photos from './Photos/Photos'
-import { getPhotosTC } from '../Redux/photosReducer'
+import { deletePhotoTC, editTitlePhotoTC, getPhotosTC } from '../Redux/photosReducer'
 import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 import { fakeApiGetPosts } from '../../api/fakeApi'
 
@@ -41,7 +41,8 @@ const RequestContainer = (props) => {
                     <Route path='/request_axios/photos/'>
                         {(idAlbum == undefined) ?
                             <Photos photosList={props.photosList} /> :
-                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} idPhoto={idPhoto} />}
+                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} 
+                            idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto}/>}
                     </Route>
                     {props.loadingProcess && <Loader />}
                 </div>}
@@ -65,7 +66,9 @@ let mapDispatchToProps = {
     getUsers: getUsersTC,
     editUsers: editUsersTC,
     getPhotos: getPhotosTC,
-    getfakeApiGetPosts: fakeApiGetPosts
+    getfakeApiGetPosts: fakeApiGetPosts,
+    editTitlePhoto: editTitlePhotoTC,
+    deletePhoto: deletePhotoTC,
 }
 let WithRequestContainer = withRouter(RequestContainer)
 export default connect(mapStateToProps, mapDispatchToProps)(WithRequestContainer)
