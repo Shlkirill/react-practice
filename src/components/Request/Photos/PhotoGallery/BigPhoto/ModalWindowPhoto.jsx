@@ -12,14 +12,14 @@ const EditTitlePhoto = (props) => {
 }
 
 
-const ModalWindowPhoto = ({ setEditMode, title, id, idAlbum, editTitlePhoto, modalMode, deletePhoto }) => {
+const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, deletePhoto }) => {
 
     const EditTitlePhotoForm = reduxForm({
         form: 'editTitlePhoto'
     })(EditTitlePhoto)
 
     const onEditTitle = (value) => {
-        editTitlePhoto(value.title, id, idAlbum)
+        editTitlePhoto(value.title, id)
         setEditMode({
             mode: false,
             modalMode: ''

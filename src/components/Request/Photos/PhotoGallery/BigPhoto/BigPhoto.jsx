@@ -5,11 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ModalWindowPhoto from './ModalWindowPhoto'
 
 const BigPhoto = (props) => {
-    let [editMode, setEditMode] = useState({
-        mode: false,
-        modalMode: ''
-    })
-    console.log(editMode)
+
     let photo = props.photosList.find(item => item.id == +props.idPhoto) || []
 
     if (photo.length == 0) props.historyUrl.goBack()
@@ -19,14 +15,14 @@ const BigPhoto = (props) => {
 
     const closeWindow = <FontAwesomeIcon icon={faTimes} className={styles.closeWindow} id='2' onClick={(e) => { onRedirect(e.currentTarget) }} />
     const editTitle = <FontAwesomeIcon icon={faEdit} className={styles.iconEdit} onClick={() => {
-        setEditMode({
+        props.setEditMode({
             mode: true,
             modalMode: 'EDIT'
         })
     }} />
 
     const deletePhoto = <FontAwesomeIcon icon={faTrash} className={styles.iconDelete} onClick={() => {
-        setEditMode({
+        props.setEditMode({
             mode: true,
             modalMode: 'DELETE'
         })
@@ -56,9 +52,8 @@ const BigPhoto = (props) => {
                 {arrowLeft}
                 {arrowRight}
             </div>
-            {editMode.mode && <ModalWindowPhoto setEditMode={setEditMode} title={photo.title} id={photo.id}
-                editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={editMode.modalMode} 
-                idAlbum={props.idAlbum}/>}
+            {props.editMode.mode && <ModalWindowPhoto setEditMode={props.setEditMode} title={photo.title} id={photo.id}
+                editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={props.editMode.modalMode}/>}
         </div>
     )
 }

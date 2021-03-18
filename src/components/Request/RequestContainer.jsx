@@ -28,7 +28,7 @@ const RequestContainer = (props) => {
 
     return (
         <div className={styles.requestContainer}>
-            {loadTrigger ? <Loader />:
+            {loadTrigger ? <Loader /> :
                 <div>
                     <Menu />
                     <Route path='/request_axios/posts'>
@@ -41,8 +41,8 @@ const RequestContainer = (props) => {
                     <Route path='/request_axios/photos/'>
                         {(idAlbum == undefined) ?
                             <Photos photosList={props.photosList} /> :
-                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum} 
-                            idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto}/>}
+                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum}
+                                idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} />}
                     </Route>
                     {props.loadingProcess && <Loader />}
                 </div>}
