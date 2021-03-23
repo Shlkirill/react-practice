@@ -15,16 +15,18 @@ import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 import { fakeApiGetPosts } from '../../api/fakeApi'
 
 const RequestContainer = (props) => {
-    const loadTrigger = props.users.length == 0 || props.photosList.length == 0;
+    const loadTrigger = props.users.length == 0 || props.albumsList.length == 0;
     const idAlbum = props.match.params.idAlbum;
     const idPhoto = props.match.params.idPhoto;
-    console.log(props, idAlbum )
+    
     useEffect(() => {
         props.getPosts();
         props.getUsers();
         props.getPhotos();
     }, [])
 
+    let filterClickAlbum = props.albumsList.find(item=> item.id == idAlbum)
+    
     return (
         <div className={styles.requestContainer}>
             {loadTrigger ? <Loader /> :
@@ -39,8 +41,8 @@ const RequestContainer = (props) => {
                     </Route>
                     <Route path='/request_axios/photos/'>
                         {(idAlbum == undefined) ?
-                            <Photos photosList={props.photosList} /> :
-                            <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum}
+                            <Photos albumsList={props.albumsList} /> :
+                            <PhotoGallery album={filterClickAlbum} idAlbum={props.match.params.idAlbum}
                                 idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} 
                                 addPhoto={props.addPhoto} />}
                     </Route>
@@ -55,7 +57,7 @@ let mapStateToProps = (state) => {
         postsList: state.request.postsList,
         loadingProcess: state.request.loadingProcess,
         users: state.users.usersList,
-        photosList: state.photos.photosList
+        albumsList: state.photos.albumsList
     }
 }
 let mapDispatchToProps = {

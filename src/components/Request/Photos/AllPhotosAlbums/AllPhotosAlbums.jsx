@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './AllPhotosAlbums.module.css'
 
@@ -24,7 +24,7 @@ const AllPhotosAlbums = ({ id, photosList }) => {
                         {arr}
                     </div>
                 </NavLink>
-                <p className={styles.description}>Album № {id + 1}</p>
+                <p className={styles.description}>Album № {id}</p>
             </div>
         </div>
     )

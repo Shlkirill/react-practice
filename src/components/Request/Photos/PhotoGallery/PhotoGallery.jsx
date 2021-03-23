@@ -5,6 +5,7 @@ import ModalWindowPhoto from './BigPhoto/ModalWindowPhoto'
 import styles from './PhotoGallery.module.css'
 
 const PhotoGallery = (props) => {
+
     let [editMode, setEditMode] = useState({
         mode: false,
         modalMode: ''
@@ -12,7 +13,8 @@ const PhotoGallery = (props) => {
 
     let historyUrl = useHistory();
 
-    let arrPhotosList = props.photosList.map(item => {
+    let arrPhotosList = props.album.photosList.map(item => {
+
         let backgroundImageStyle = {
             backgroundImage: 'url(' + item.url + ')',
             backgroundSize: "cover",
@@ -28,25 +30,25 @@ const PhotoGallery = (props) => {
     return (
         <div className={styles.container}>
             {props.idPhoto && <Route path='/request_axios/:subsection?/:idAlbum/:idPhoto'>
-                <BigPhoto photosList={props.photosList} idPhoto={props.idPhoto} idAlbum={props.idAlbum}
+                <BigPhoto photosList={props.album.photosList} idPhoto={props.idPhoto} idAlbum={props.idAlbum}
                     historyUrl={historyUrl} idAlbum={props.idAlbum} editTitlePhoto={props.editTitlePhoto}
-                    deletePhoto={props.deletePhoto} editMode={editMode} setEditMode={setEditMode}/>
+                    deletePhoto={props.deletePhoto} editMode={editMode} setEditMode={setEditMode} />
             </Route>}
-            <h3 className={styles.tittle}>Album № {+props.idAlbum + 1}</h3>
+            <h3 className={styles.tittle}>Album № {props.idAlbum}</h3>
             <div>
-                {<button onClick={()=> {
+                {<button onClick={() => {
                     setEditMode({
                         mode: true,
                         modalMode: 'ADD-PHOTO'
                     })
-                }} disabled={props.photosList.length >= 50}>Add</button>}
+                }} disabled={props.album.photosList.length >= 20}>Add</button>}
             </div>
             <div className={styles.wrapper}>
                 <div className={styles.photos}>
                     {arrPhotosList}
                 </div>
                 {editMode.mode && <ModalWindowPhoto setEditMode={setEditMode} idAlbum={props.idAlbum}
-                modalMode={editMode.modalMode} addPhoto={props.addPhoto}/>}
+                    modalMode={editMode.modalMode} addPhoto={props.addPhoto} />}
             </div>
         </div>
     )

@@ -72,30 +72,29 @@ export const apiEditUsers = async (objInfoUser) => {
 };
 
 export const apiGetPhotos = async () => {
-    let response = await instance.get('/photos')
+    let response = await instance.get('/photos2')
     return response.data
 };
 
-export const apiEditTitlePhoto = async (title, id) => {
-    let getPhoto = await instance.get(`/photos/${id}`)
-    let copyPhoto = {
-        ...getPhoto.data,
-        title
-    }
-    let response = await instance.put(`/photos/${id}`, copyPhoto);
-    console.log(response)
+export const apiEditTitlePhoto = async (title, idAlbum, idPhoto) => {
+    let getPhoto = await instance.get(`/photos2/${idAlbum}`)
+
+    getPhoto.data.photosList.find(item => item.id == idPhoto)
+    .title = title // Находим фото по id в альбоме и меняем его title
+
+    await instance.put(`/photos2/${idAlbum}`, getPhoto.data);
 }
-export const apiAddPhoto = async(url, title, idAlbum) => {
+export const apiAddPhoto = async (url, title, idAlbum) => {
 
     const idPhoto = `f${(~~(Math.random() * 1e8)).toString(16)}`;
 
     let newPhoto = {
-            albumId: +idAlbum + 1,
-            id: idPhoto,
-            title: title,
-            url: url
+        albumId: +idAlbum + 1,
+        id: idPhoto,
+        title: title,
+        url: url
     }
-    let response = await instance.post('/photos', newPhoto);
+    let response = await instance.post('/photos2', newPhoto);
     console.log(response)
 }
 

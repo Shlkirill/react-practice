@@ -6,11 +6,11 @@ const EDIT_TITLE = 'EDIT_TITLE';
 const DELETE_PHOTO = 'DELETE_PHOTO'
 
 export const getPhotosAC = photos => ({ type: GET_PHOTOS, photos });
-export const editTitleAC = (title, id) => ({ type: EDIT_TITLE, title, id })
+export const editTitleAC = (title, idAlbum, idPhoto) => ({ type: EDIT_TITLE, title, idAlbum, idPhoto })
 export const deletePhotoAC = id => ({ type: DELETE_PHOTO, id })
 
 let initialState = {
-  photosList: [],
+  albumsList: [],
 }
 
 const photosReducer = (state = initialState, action) => {
@@ -18,45 +18,35 @@ const photosReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PHOTOS:
 
-      let counter = 1;
-      let photosListFilter = []
-
-      while (counter <= action.photos.length / 50) {
-        let arrPhotos = action.photos
-          .filter(item => {
-            if (item.albumId == counter) return item
-          })
-        photosListFilter.push(arrPhotos)
-        counter++
-      }
-
       stateCopy = {
         ...state,
-        photosList: photosListFilter,
+        albumsList: action.photos,
       }
-
       return stateCopy;
     case EDIT_TITLE:
-      let arrayEditPhoto = state.photosList.map(item => {
-        item.map(photo => {
-          if (photo.id == action.id) photo.title = action.title
-        })
+      let arrayEditPhoto = state.albumsList.map(item => {
+        if (item.id == action.idAlbum) {
+          item.photosList.map(item => {
+            if (item.id == action.idPhoto) item.title = action.title
+            return item
+          })
+        }
         return item
       })
       stateCopy = {
         ...state,
-        photosList: arrayEditPhoto
+        albumsList: arrayEditPhoto
       }
       return stateCopy
     case DELETE_PHOTO:
-      let arrayWithoutDeletedPhoto = state.photosList.map(item => {
+      let arrayWithoutDeletedPhoto = state.albumsList.map(item => {
         return item.filter(photo => {
           if (photo.id !== action.id) return item
         })
       })
       stateCopy = {
         ...state,
-        photosList: arrayWithoutDeletedPhoto
+        albumsList: arrayWithoutDeletedPhoto
       }
       return stateCopy
     default:
@@ -81,11 +71,11 @@ export const addPhotoTC = (url, title, idAlbum) => {
   )
 }
 
-export const editTitlePhotoTC = (title, id) => {
+export const editTitlePhotoTC = (title, idAlbum, idPhoto) => {
   return (
     async (dispatch) => {
-      await apiEditTitlePhoto(title, id);
-      dispatch(editTitleAC(title, id))
+      await apiEditTitlePhoto(title, idAlbum, idPhoto);
+      dispatch(editTitleAC(title, idAlbum, idPhoto))
     }
   )
 }

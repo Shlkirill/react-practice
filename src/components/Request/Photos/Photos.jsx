@@ -5,13 +5,13 @@ import styles from './Photos.module.css'
 const Photos = ({ photosList }) => {
     let [viewAlbm, setViewAlbm] = useState(3)
 
-    let photosListFilter = photosList.filter((item, index) => {
-        if (index < viewAlbm) return item
+
+    let arrAllPhotosAlbums = photosList.map(item => {
+        return <AllPhotosAlbums key={item.key} photosList={item.photosList} id={item.id} />
+    }).filter((item, index) => {
+        return index < viewAlbm
     })
 
-    let arrAllPhotosAlbums = photosListFilter.map((item, index) => {
-        return <AllPhotosAlbums photosList={item} id={index} />
-    })
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -20,9 +20,9 @@ const Photos = ({ photosList }) => {
                     {arrAllPhotosAlbums}
                 </div>
                 <div className={styles.navigations}>
-                    <button className={styles.moreAlbum} onClick={() => { setViewAlbm(viewAlbm + 3) }}>
+                    {photosList.length >= viewAlbm && <button className={styles.moreAlbum} onClick={() => { setViewAlbm(viewAlbm + 3) }}>
                         More albms
-                    </button>
+                    </button>}
                 </div>
             </div>
         </div>
