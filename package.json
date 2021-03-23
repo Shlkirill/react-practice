@@ -32,7 +32,8 @@
     "eject": "react-scripts eject",
     "predploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "json-server-start": "json-server info.json -p 3001"
+    "json-server-start": "json-server info.json -p 3001",
+    "json-server-start-routes": "json-server info.json -p 3001 --routes routes.json"
   },
   "eslintConfig": {
     "extends": [

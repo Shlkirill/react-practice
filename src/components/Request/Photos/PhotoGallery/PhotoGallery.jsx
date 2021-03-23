@@ -34,13 +34,19 @@ const PhotoGallery = (props) => {
             </Route>}
             <h3 className={styles.tittle}>Album № {+props.idAlbum + 1}</h3>
             <div>
-                <button>Add</button>
+                {<button onClick={()=> {
+                    setEditMode({
+                        mode: true,
+                        modalMode: 'ADD-PHOTO'
+                    })
+                }} disabled={props.photosList.length >= 50}>Add</button>}
             </div>
             <div className={styles.wrapper}>
                 <div className={styles.photos}>
                     {arrPhotosList}
                 </div>
-                {editMode.mode && <ModalWindowPhoto />}
+                {editMode.mode && <ModalWindowPhoto setEditMode={setEditMode} idAlbum={props.idAlbum}
+                modalMode={editMode.modalMode} addPhoto={props.addPhoto}/>}
             </div>
         </div>
     )

@@ -10,16 +10,15 @@ import Loader from '../common/Loader'
 import Users from './Users/Users'
 import { getUsersTC, editUsersTC } from '../Redux/usersReducer'
 import Photos from './Photos/Photos'
-import { deletePhotoTC, editTitlePhotoTC, getPhotosTC } from '../Redux/photosReducer'
+import { addPhotoTC, deletePhotoTC, editTitlePhotoTC, getPhotosTC } from '../Redux/photosReducer'
 import PhotoGallery from './Photos/PhotoGallery/PhotoGallery'
 import { fakeApiGetPosts } from '../../api/fakeApi'
 
 const RequestContainer = (props) => {
-
     const loadTrigger = props.users.length == 0 || props.photosList.length == 0;
     const idAlbum = props.match.params.idAlbum;
     const idPhoto = props.match.params.idPhoto;
-
+    console.log(props, idAlbum )
     useEffect(() => {
         props.getPosts();
         props.getUsers();
@@ -42,7 +41,8 @@ const RequestContainer = (props) => {
                         {(idAlbum == undefined) ?
                             <Photos photosList={props.photosList} /> :
                             <PhotoGallery photosList={props.photosList[idAlbum]} idAlbum={props.match.params.idAlbum}
-                                idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} />}
+                                idPhoto={idPhoto} editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} 
+                                addPhoto={props.addPhoto} />}
                     </Route>
                     {props.loadingProcess && <Loader />}
                 </div>}
@@ -69,6 +69,7 @@ let mapDispatchToProps = {
     getfakeApiGetPosts: fakeApiGetPosts,
     editTitlePhoto: editTitlePhotoTC,
     deletePhoto: deletePhotoTC,
+    addPhoto: addPhotoTC
 }
 let WithRequestContainer = withRouter(RequestContainer)
 export default connect(mapStateToProps, mapDispatchToProps)(WithRequestContainer)

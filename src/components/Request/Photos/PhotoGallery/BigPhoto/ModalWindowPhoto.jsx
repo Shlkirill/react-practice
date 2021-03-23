@@ -11,12 +11,25 @@ const EditTitlePhoto = (props) => {
     )
 }
 
+const AddPhotoModalWindow = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component='input' name='url' />
+            <Field component='textarea' name='title' />
+            <button>Ok</button>
+        </form>
+    )
+}
 
-const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, deletePhoto }) => {
+const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, deletePhoto, addPhoto, idAlbum }) => {
 
     const EditTitlePhotoForm = reduxForm({
         form: 'editTitlePhoto'
     })(EditTitlePhoto)
+
+    const AddPhoto = reduxForm({
+        form: 'addPhoto'
+    })(AddPhotoModalWindow)
 
     const onEditTitle = (value) => {
         editTitlePhoto(value.title, id)
@@ -32,7 +45,13 @@ const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, d
             modalMode: ''
         })
     }
-
+    const onAddPhoto = (value) => {
+        addPhoto(value.url, value.title, idAlbum)
+        setEditMode({
+            mode: false,
+            modalMode: ''
+        })
+    }
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -45,6 +64,7 @@ const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, d
                             <button>No</button>
                         </div>
                     </div>}
+                    {modalMode == 'ADD-PHOTO' && <AddPhoto onSubmit={onAddPhoto}/>}
                     <button onClick={() => {
                         setEditMode({
                             mode: false,

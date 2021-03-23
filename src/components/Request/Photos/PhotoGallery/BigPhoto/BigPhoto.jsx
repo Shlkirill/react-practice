@@ -6,9 +6,10 @@ import ModalWindowPhoto from './ModalWindowPhoto'
 
 const BigPhoto = (props) => {
 
-    let photo = props.photosList.find(item => item.id == +props.idPhoto) || []
+    let photo = props.photosList.find(item => item.id == props.idPhoto) || []
 
     if (photo.length == 0) props.historyUrl.goBack()
+    
     const onRedirect = (target) => {
         if (target.id == 1 || target.id == 2) props.historyUrl.push(`/request_axios/photos/${props.idAlbum}`)
     }
@@ -53,7 +54,7 @@ const BigPhoto = (props) => {
                 {arrowRight}
             </div>
             {props.editMode.mode && <ModalWindowPhoto setEditMode={props.setEditMode} title={photo.title} id={photo.id}
-                editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={props.editMode.modalMode}/>}
+                editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={props.editMode.modalMode} />}
         </div>
     )
 }

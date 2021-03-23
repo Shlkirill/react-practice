@@ -85,6 +85,19 @@ export const apiEditTitlePhoto = async (title, id) => {
     let response = await instance.put(`/photos/${id}`, copyPhoto);
     console.log(response)
 }
+export const apiAddPhoto = async(url, title, idAlbum) => {
+
+    const idPhoto = `f${(~~(Math.random() * 1e8)).toString(16)}`;
+
+    let newPhoto = {
+            albumId: +idAlbum + 1,
+            id: idPhoto,
+            title: title,
+            url: url
+    }
+    let response = await instance.post('/photos', newPhoto);
+    console.log(response)
+}
 
 export const apiDeletePhoto = async (id) => {
     await instance.delete(`/photos/${id}`)

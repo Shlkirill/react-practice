@@ -1,5 +1,5 @@
 import { act } from "react-dom/test-utils";
-import { apiGetPhotos, apiEditTitlePhoto, apiDeletePhoto } from "../../api/api";
+import { apiGetPhotos, apiEditTitlePhoto, apiDeletePhoto, apiAddPhoto } from "../../api/api";
 
 const GET_PHOTOS = 'GET_PHOTOS';
 const EDIT_TITLE = 'EDIT_TITLE';
@@ -69,6 +69,14 @@ export const getPhotosTC = () => {
     async (dispatch) => {
       let response = await apiGetPhotos();
       dispatch(getPhotosAC(response));
+    }
+  )
+}
+
+export const addPhotoTC = (url, title, idAlbum) => {
+  return (
+    async (dispatch) => {
+      await apiAddPhoto(url, title, idAlbum)
     }
   )
 }
