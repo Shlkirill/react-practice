@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import AllPhotosAlbums from './AllPhotosAlbums/AllPhotosAlbums';
 import styles from './Photos.module.css'
 
-const Photos = ({ photosList }) => {
+const Photos = ({ albumsList }) => {
     let [viewAlbm, setViewAlbm] = useState(3)
 
-
-    let arrAllPhotosAlbums = photosList.map(item => {
+    let arrAllPhotosAlbums = albumsList.map(item => {
         return <AllPhotosAlbums key={item.key} photosList={item.photosList} id={item.id} />
     }).filter((item, index) => {
         return index < viewAlbm
@@ -20,7 +19,7 @@ const Photos = ({ photosList }) => {
                     {arrAllPhotosAlbums}
                 </div>
                 <div className={styles.navigations}>
-                    {photosList.length >= viewAlbm && <button className={styles.moreAlbum} onClick={() => { setViewAlbm(viewAlbm + 3) }}>
+                    {albumsList.length >= viewAlbm && <button className={styles.moreAlbum} onClick={() => { setViewAlbm(viewAlbm + 3) }}>
                         More albms
                     </button>}
                 </div>

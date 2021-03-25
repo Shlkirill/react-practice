@@ -77,27 +77,45 @@ export const apiGetPhotos = async () => {
 };
 
 export const apiEditTitlePhoto = async (title, idAlbum, idPhoto) => {
-    let getPhoto = await instance.get(`/photos2/${idAlbum}`)
+    let getPhoto = await instance.get(`/photos2/${idAlbum}`) // Получаем нужный нам альбом с сервера
 
     getPhoto.data.photosList.find(item => item.id == idPhoto)
-    .title = title // Находим фото по id в альбоме и меняем его title
+        .title = title // Находим фото по id в альбоме и меняем его title
 
-    await instance.put(`/photos2/${idAlbum}`, getPhoto.data);
+    await instance.put(`/photos2/${idAlbum}`, getPhoto.data); // Загружаем альбом(с новым title фото) на сервер
 }
 export const apiAddPhoto = async (url, title, idAlbum) => {
+    //Из за json-server не удается получить дочерний массив (набор фото) альбома, поэтому добавление фотографии происходит путем перезаписи альбома
 
-    const idPhoto = `f${(~~(Math.random() * 1e8)).toString(16)}`;
+    let getPhoto = await instance.get(`/photos2/${idAlbum}`) // Получаем нужный нам альбом с сервера
+
+    const idPhoto = `f${(~~(Math.random() * 1e8)).toString(16)}`; // Выдаем рандомный Id фото
 
     let newPhoto = {
-        albumId: +idAlbum + 1,
         id: idPhoto,
         title: title,
         url: url
-    }
-    let response = await instance.post('/photos2', newPhoto);
-    console.log(response)
+    } // Формируем объект нового фото 
+    let copyAlbum = {
+        ...getPhoto.data
+    } // Копируем объект альбома 
+    copyAlbum.photosList.unshift(newPhoto) // Добовляем новое фото в массив фотографий
+
+    let response = await instance.put(`/photos2/${idAlbum}`, copyAlbum); // Заливаем новый альбом на сервер
+    return response.data
 }
 
-export const apiDeletePhoto = async (id) => {
-    await instance.delete(`/photos/${id}`)
+export const apiDeletePhoto = async (idAlbum, idPhoto) => {
+    //Из за json-server не удается получить дочерний массив (набор фото) альбома, поэтому удаление фотографии происходит путем перезаписи альбома
+
+    let getPhoto = await instance.get(`/photos2/${idAlbum}`) // Получаем нужный нам альбом с сервера
+
+    let newArrPhotos = getPhoto.data.photosList.filter(item => {
+        if (item.id !== idPhoto) return item
+    }) // Возвращаем массив фото, без удаленной фотографии 
+    let copyAlbum = {
+        ...getPhoto.data,
+        photosList: newArrPhotos
+    }
+    await instance.put(`/photos2/${idAlbum}`, copyAlbum); // Заливаем новый альбом на сервер
 }

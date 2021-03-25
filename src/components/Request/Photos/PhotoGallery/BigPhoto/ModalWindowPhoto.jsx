@@ -21,8 +21,8 @@ const AddPhotoModalWindow = (props) => {
     )
 }
 
-const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, deletePhoto, addPhoto, idAlbum }) => {
-    
+const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, deletePhoto, addPhoto, idAlbum, historyUrl }) => {
+
     const EditTitlePhotoForm = reduxForm({
         form: 'editTitlePhoto'
     })(EditTitlePhoto)
@@ -39,11 +39,12 @@ const ModalWindowPhoto = ({ setEditMode, title, id, editTitlePhoto, modalMode, d
         })
     }
     const onDeletePhoto = () => {
-        deletePhoto(id)
+        deletePhoto(idAlbum, id)
         setEditMode({
             mode: false,
             modalMode: ''
         })
+        historyUrl.push(`/request_axios/photos/${idAlbum}`)
     }
     const onAddPhoto = (value) => {
         addPhoto(value.url, value.title, idAlbum)

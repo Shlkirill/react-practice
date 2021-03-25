@@ -55,7 +55,7 @@ const BigPhoto = (props) => {
             </div>
             {props.editMode.mode && <ModalWindowPhoto setEditMode={props.setEditMode} title={photo.title} id={photo.id}
                 editTitlePhoto={props.editTitlePhoto} deletePhoto={props.deletePhoto} modalMode={props.editMode.modalMode}
-                idAlbum={props.idAlbum} />}
+                idAlbum={props.idAlbum} historyUrl={props.historyUrl}/>}
         </div>
     )
 }
